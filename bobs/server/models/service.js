@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
-
+/*  a record from mlab.....if this needs changed, let david know
+   *****************************************************
+-------in services--------------
+{
+    "_id": {
+        "$oid": "5bce2a5be7179a437700c6fb"
+    },
+    "name": "Virus Removal",
+    "cost": 29.95
+} */
 var serviceSchema = new mongoose.Schema({
 
 });

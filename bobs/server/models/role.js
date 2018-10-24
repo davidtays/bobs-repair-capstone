@@ -1,5 +1,14 @@
 var mongoose = require('mongoose');
-
+/*a record from mlab.....if this needs changed, let david know
+   *****************************************************
+    -------in roles------------
+    {
+        "_id": {
+            "$oid": "5bce2ae2e7179a437700c757"
+        },
+        "role": "standard"
+    }
+   */
 var roleSchema = new mongoose.Schema({
 
 });
