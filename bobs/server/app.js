@@ -10,9 +10,14 @@ const homeRouter = require('./routes/home-router');
 
 //added these, fix these?
 const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser'); // test
+const cookieParser = require('cookie-parser');
 
+// few more for authentication
+const passport = require ('passport');
+// require('./server/models/db');, require('./server/config/passport');
 
+app.use(passport.initialize());
+app.use('/server',routesApi); //check back on this
 
 /**
  * MongoDB setup
