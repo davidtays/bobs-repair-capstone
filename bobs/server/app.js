@@ -17,7 +17,9 @@ const cookieParser = require('cookie-parser');
 /**
  * MongoDB setup
  */
-mongoose.connect('mongodb://' + config.database.username + ':'
+//***************** CURRENTLY OUR CONNECTION DOESNT WORK **********************/
+//***************** can you use this in 'helpers/config.js or keep this here and use the values from config.js??? */
+mongoose.connect('mongodb://' + config.database.username + ':' 
   + config.database.password + '@'
   + config.database.url + ':'
   + config.database.port + '/'
@@ -35,8 +37,8 @@ let app = express();
  */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false'}));
-app.use(express.static(path.join(__dirname, '../dist/nodequiz')));
-app.use('/', express.static(path.join(__dirname, '../dist/nodequiz')));
+app.use(express.static(path.join(__dirname, '../dist/nodequiz')));//***************** nodequiz??? */
+app.use('/', express.static(path.join(__dirname, '../dist/nodequiz')));//***************** nodequiz??? */
 app.use(morgan('dev'));
 
 app.use('/api', homeRouter); // wires the homeController to localhost:3000/api
