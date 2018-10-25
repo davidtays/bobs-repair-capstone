@@ -83,7 +83,7 @@ export class AuthenticationService{
 
 
 
-//uses HTTP client inside angular to make http requests to server application
+//uses HTTP client inside angular to make http requests to server application*
 export interface UserDetails{
   _id:string;
   username:string;
