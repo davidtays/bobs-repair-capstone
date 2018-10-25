@@ -8,9 +8,15 @@
       <button mat-button class="mat-button med-font" routerLink="/forgot">
         Forgot
       </button>
-      <button mat-button class="mat-button med-font" routerLink="/login">
+      
+      <button mat-button class="mat-button med-font" *ngIf="!auth.isLoggedIn()" routerLink="/login">
         Login
       </button>
+      <button mat-button class="mat-button med-font" *ngIf="!auth.isLoggedIn()" routerLink="/profile">{{ auth.getUserDetails()?.name }}
+      </button>
+      <button mat-button class="mat-button med-font" *ngIf="!auth.isLoggedIn()" (click)="auth.logout()">Logout
+      </button>
+
       <button mat-button class="mat-button med-font" routerLink="/manage">
         Manage 
       </button>
