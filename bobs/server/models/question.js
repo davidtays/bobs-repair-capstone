@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 
 */
 var questionSchema = new mongoose.Schema({
-
+    question: String
 });
 
 const Question = module.exports = mongoose.model('Question', questionSchema);

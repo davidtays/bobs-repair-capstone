@@ -10,7 +10,8 @@ var mongoose = require('mongoose');
     "cost": 29.95
 } */
 var serviceSchema = new mongoose.Schema({
-
+    name: String,
+    cost: Number
 });
 
 const Service = module.exports = mongoose.model('Service', serviceSchema);
@@ -19,4 +20,10 @@ module.exports.getByName = (thisName, callback) => {
     var query = {name: thisName};
     console.log(thisName + '=thisName from the service model');
     Service.findOne(query, callback);
+}
+
+module.exports.getAllServices = (thisName, callback) => {
+    var query = {name: thisName};
+    console.log(thisName + '=thisName from the service model');
+    Service.find(callback);
 }
