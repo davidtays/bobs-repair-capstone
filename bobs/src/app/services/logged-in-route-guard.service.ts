@@ -1,17 +1,33 @@
 import { Injectable } from '@angular/core';
-import {Router, CanActivate} from '@angular/router';
-import { AuthenticationService } from './authentication.service';
 
+import {
+  CanActivate,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  Router,
+} from '@angular/router';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Observable, Observer, Subject } from 'rxjs';
+@Injectable({
+  providedIn: 'root'
+})
+export class LoggedInRouteGuardService implements CanActivate{
+  public isLoggedIn: boolean = false;
 
-@Injectable()
-  export class AuthGuardService implements CanActivate{
-    constructor(private auth: AuthenticationService, private router: Router){}
-      canActivate(){
-        if (!this.auth.isLoggedIn()){
-          this.router.navigateByUrl('/');
-          return false;
-        }
-        return true;
-      }
+  public redirectUrl: "/select";
+  
+  
+  constructor(private router: Router) { }
 
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
+    console.log();
+    return this.checkLogin(localStorage.getItem('id'));
   }
+  public checkLogin(key: string): boolean {
+    if(key == ''){
+      return false;
+    }else{
+      return true;
+    }
+  }
+}
