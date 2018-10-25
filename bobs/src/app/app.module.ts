@@ -18,6 +18,7 @@ import { ForgotPasswordComponent } from './security/forgot-password/forgot-passw
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 import { ManagementComponent } from './admin/management/management.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
     ManagementComponent,
     MatRadioGroup,
     MatRadioButton,
-    RegisterComponent
+    RegisterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
