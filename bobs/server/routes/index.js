@@ -1,0 +1,1 @@
+var jwt = require('express-jwt');
