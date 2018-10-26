@@ -16,7 +16,7 @@ config.database = {};
 config.database.username = 'bob';
 config.database.password = 'password1';
 config.database.port = '61913';
-config.database.url = 'ds16193.mlab.com';
+config.database.url = 'ds161913.mlab.com';
 config.database.name = 'bcrs';
 
 

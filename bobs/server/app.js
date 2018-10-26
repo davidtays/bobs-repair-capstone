@@ -57,4 +57,4 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-app.use(cookieParser());
+//app.use(cookieParser());
