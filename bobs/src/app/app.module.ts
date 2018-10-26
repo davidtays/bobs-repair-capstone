@@ -17,18 +17,10 @@ import { LoginComponent } from './security/login/login.component';
 import { ForgotPasswordComponent } from './security/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 import { ManagementComponent } from './admin/management/management.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
 
 
-//routes
 
-const routes: Routes=[
-  {path:'',component:HomeComponent},
-  {path:'login',component:LoginComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'profile',component:ProfileComponent, canActivate:[AuthGuardService]},
-];
+
 
 @NgModule({
   declarations: [
@@ -40,8 +32,7 @@ const routes: Routes=[
     ManagementComponent,
     MatRadioGroup,
     MatRadioButton,
-    RegisterComponent,
-    ProfileComponent
+
   ],
   imports: [
     BrowserModule,
