@@ -44,7 +44,6 @@ import { ProfileComponent } from './profile/profile.component';
     MatButtonToggleModule,
     MatOptionModule,
     MatSelectModule,
-    MatSelectModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
