@@ -1,6 +1,6 @@
-const passport = require('passport');
-const mongoose = require('mongoose');
-const User = mongoose.model('User');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 
 
 

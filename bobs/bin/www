@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 const app = require('../server/app');
-const debug = require('debug')('nodequiz');
+const debug = require('debug')('bobs');
 const http = require('http');
 const config = require('../server/helpers/config');
 const logger = require('../server/helpers/logger');

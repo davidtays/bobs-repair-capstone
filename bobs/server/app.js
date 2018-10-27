@@ -1,14 +1,24 @@
-const express = require('express');
-const path = require('path');
+var express = require('express');
+var path = require('path');
 const createError = require('http-errors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+var favicon = require('serve-favicon');
 const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./helpers/config');
 const homeRouter = require('./routes/home-router');
 
+//added these, fix these?
 
+var cookieParser = require('cookie-parser');
+
+// few more for authentication
+const passport = require ('passport');
+// require('./server/models/db');, require('./server/config/passport');
+
+app.use(passport.initialize());
+app.use('/server',routesApp); //check back on this
 
 /**
  * MongoDB setup

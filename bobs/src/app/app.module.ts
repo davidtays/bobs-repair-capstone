@@ -18,10 +18,19 @@ import { ForgotPasswordComponent } from './security/forgot-password/forgot-passw
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 import { ChangeQuestionsComponent } from './admin/change-questions/change-questions.component';
 import { ManagementComponent } from './admin/management/management.component';
+
+import { RegisterComponent } from './security/register/register.component';
+
+//AUTH SERVICE
+
+import { AuthenticationService } from './authentication.service';
+import { AuthGuardService } from './auth-guard.service';
+
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
-import { RegisterComponent } from './register/register.component';
+
+
 
 
 @NgModule({
@@ -37,8 +46,10 @@ import { RegisterComponent } from './register/register.component';
     ManagementComponent,
     MatRadioGroup,
     MatRadioButton,
+    RegisterComponent,
     AboutComponent,
     ContactComponent,
+
 
   ],
   imports: [
@@ -59,12 +70,16 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
-    RouterModule,
+    RouterModule, //look into routerModule
     AppRoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    
   ],
-  providers: [LoggedInRouteGuardService],
+  providers: [LoggedInRouteGuardService,
+              AuthenticationService,
+              AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
