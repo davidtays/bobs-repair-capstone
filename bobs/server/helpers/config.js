@@ -13,11 +13,11 @@ config.web.secret = 'topsecret';
  *
  */
 config.database = {};
-config.database.username = 'bob';
-config.database.password = 'password1';
-config.database.port = '61913';
-config.database.url = 'ds16193.mlab.com';
-config.database.name = 'bcrs';
+config.database.username = 'admin';
+config.database.password = 'admin1';
+config.database.port = '19014';
+config.database.url = 'ds119014.mlab.com';
+config.database.name = 'bobs';
 
 
 module.exports = config;
