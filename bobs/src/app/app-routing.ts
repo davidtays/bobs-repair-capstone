@@ -8,7 +8,7 @@ import { ForgotPasswordComponent } from './security/forgot-password/forgot-passw
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
 import { RegisterComponent } from './register/register.component';
 import { ManagementComponent } from './admin/management/management.component';
-import { ChangeQuestionsComponent } from './security/change-questions/change-questions.component';
+import { ChangeQuestionsComponent } from './admin/change-questions/change-questions.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';

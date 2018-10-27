@@ -11,5 +11,8 @@ export class SecurityQuestionsComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  onSubmit(formData){
+    console.log(formData);
+  }
 }

@@ -11,5 +11,8 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  
+  onSubmit(formData){
+    console.log(formData);
+  }
 }
