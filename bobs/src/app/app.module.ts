@@ -16,7 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
 import { ForgotPasswordComponent } from './security/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
+import { ChangeQuestionsComponent } from './security/change-questions/change-questions.component';
 import { ManagementComponent } from './admin/management/management.component';
+
 import { RegisterComponent } from './security/register/register.component';
 
 //AUTH SERVICE
@@ -24,18 +26,30 @@ import { RegisterComponent } from './security/register/register.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
     ForgotPasswordComponent,
+    SecurityQuestionsComponent,
     ResetPasswordComponent,
+    ChangeQuestionsComponent,
     ManagementComponent,
     MatRadioGroup,
     MatRadioButton,
-    RegisterComponent
+    RegisterComponent,
+    AboutComponent,
+    ContactComponent,
+
 
   ],
   imports: [
@@ -48,7 +62,6 @@ import { AuthGuardService } from './auth-guard.service';
     MatRippleModule,
     MatButtonToggleModule,
     MatOptionModule,
-    MatSelectModule,
     MatSelectModule,
     MatTableModule,
     MatButtonModule,

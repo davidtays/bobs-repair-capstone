@@ -30,6 +30,7 @@
     "cookie-parser": "^1.4.3",
     "core-js": "^2.5.4",
     "express": "^4.16.4",
+    "express-jwt": "^5.3.1",
     "http-errors": "^1.7.0",
     "jsonwebtoken": "^8.3.0",
     "logger": "0.0.1",
@@ -37,7 +38,7 @@
     "morgan": "^1.9.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "rxjs": "^6.3.3",
+    "rxjs": "^6.2",
     "serve-favicon": "^2.5.0",
     "winston": "^3.0.0",
     "zone.js": "^0.8.26"

@@ -127,7 +127,7 @@ userSchema.methods.generateJwt = function(){
         address:this.address,
         email:this.email,
         exp: parseInt(expiry.getTime() / 1000),
-    })
+    })//'topsecret');
 }
 
 
