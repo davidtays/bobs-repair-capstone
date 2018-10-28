@@ -10,7 +10,7 @@ import { ManagementComponent } from './admin/management/management.component';
 
 import { RegisterComponent } from './security/register/register.component';
 
-import { ChangeQuestionsComponent } from './security/change-questions/change-questions.component';
+import { ChangeQuestionsComponent } from './admin/change-questions/change-questions.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
@@ -22,6 +22,11 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
+<<<<<<< HEAD
+=======
+
+    {path: 'manage', component: ManagementComponent},
+>>>>>>> 8089c575075a094efd7bd71c33161bda5b621496
     {path: 'register', component: RegisterComponent},
     {path: 'manage', component: ManagementComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent},

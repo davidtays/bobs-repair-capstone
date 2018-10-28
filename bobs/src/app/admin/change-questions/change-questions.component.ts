@@ -12,4 +12,7 @@ export class ChangeQuestionsComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit(formData){
+    console.log(formData);
+  }
 }
