@@ -10,15 +10,14 @@ const config = require('./helpers/config');
 const homeRouter = require('./routes/home-router');
 
 //added these, fix these?
-
 var cookieParser = require('cookie-parser');
 
 // few more for authentication
-const passport = require ('passport');
+// var passport = require ('passport');
 // require('./server/models/db');, require('./server/config/passport');
 
-app.use(passport.initialize());
-app.use('/server',routesApp); //check back on this
+// app.use(passport.initialize());
+//app.use('/server',routesApp); //check back on this
 
 /**
  * MongoDB setup
@@ -67,4 +66,4 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-//app.use(cookieParser());
+app.use(cookieParser());
