@@ -99,8 +99,8 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     // salt/hash is one-way encryption
-    hash: String,
-    salt: String
+    //hash: String,
+    //salt: String
 });
 
 //set password
@@ -139,4 +139,21 @@ module.exports.getByName = (thisName, callback) => {
     var query = {username: thisName};
     console.log(thisName + '=thisName from the user model');
     User.findOne(query, callback);
+}
+
+//add a user
+module.exports.add = (user,callback) => {
+    user.save(callback);
+}
+
+//get user by id
+module.exports.getById = (id, callback) => {
+    var query = {_id: id};
+    User.findById(query, callback);
+}
+
+//get user by email
+module.exports.getOne = (e, callback) => {
+    var query = {username: e};
+    User.findOne(query,callback);
 }

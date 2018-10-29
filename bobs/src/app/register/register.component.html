@@ -1,23 +1,28 @@
-<mat-card>
-    <mat-card-content>
+
       <h2>User Register</h2>
-      <form>
+
+<form #f="ngForm" (ngSubmit)="login(f.value)">
+  <mat-card>
+      <mat-card-content>
         <mat-form-field>
           <input matInput placeholder="First Name" name="firstName">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Last Name" name="firstName">
+          <input matInput placeholder="Last Name" name="lastName">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Phone Number" name="firstName">
+          <input matInput placeholder="Phone Number" name="phoneNumber">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Email" name="firstName">
+          <input matInput placeholder="Email" name="email">
         </mat-form-field>
-      </form>
-    </mat-card-content>
-    <mat-card-actions>
+        <mat-form-field>
+          <input matInput placeholder="Username" name="username">
+        </mat-form-field>      
+      </mat-card-content>
+      <mat-card-actions>
         <button mat-raised-button type='submit' >Cancel</button> <button mat-raised-button type='submit' >Submit</button>
       </mat-card-actions>
   </mat-card>
+</form>
   

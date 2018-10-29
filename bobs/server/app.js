@@ -8,6 +8,7 @@ const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./helpers/config');
 const homeRouter = require('./routes/home-router');
+mongoose.Promise = require('bluebird');
 
 //added these, fix these?
 
@@ -17,8 +18,8 @@ var cookieParser = require('cookie-parser');
 const passport = require ('passport');
 // require('./server/models/db');, require('./server/config/passport');
 
-app.use(passport.initialize());
-app.use('/server',routesApp); //check back on this
+//app.use(passport.initialize());
+//app.use('/server',routesApp); //check back on this
 
 /**
  * MongoDB setup
