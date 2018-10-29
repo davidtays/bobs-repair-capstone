@@ -23,8 +23,8 @@ import { RegisterComponent } from './security/register/register.component';
 
 //AUTH SERVICE
 
-import { AuthenticationService } from './authentication.service';
-import { AuthGuardService } from './auth-guard.service';
+import { AuthenticationService } from './services/authentication.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';

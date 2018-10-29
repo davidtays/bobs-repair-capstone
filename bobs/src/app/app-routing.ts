@@ -22,8 +22,11 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
+<<<<<<< HEAD
+=======
 
     {path: 'manage', component: ManagementComponent},
+>>>>>>> 8089c575075a094efd7bd71c33161bda5b621496
     {path: 'register', component: RegisterComponent},
     {path: 'manage', component: ManagementComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent},

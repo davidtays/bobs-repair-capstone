@@ -11,11 +11,10 @@ const homeRouter = require('./routes/home-router');
 mongoose.Promise = require('bluebird');
 
 //added these, fix these?
-
 var cookieParser = require('cookie-parser');
 
 // few more for authentication
-const passport = require ('passport');
+// var passport = require ('passport');
 // require('./server/models/db');, require('./server/config/passport');
 
 //app.use(passport.initialize());
@@ -68,4 +67,4 @@ app.use(function (err, req, res, next) {
 
 module.exports = app;
 
-//app.use(cookieParser());
+app.use(cookieParser());
