@@ -1,23 +1,31 @@
-const express = require('express');
-const path = require('path');
+var express = require('express');
+var path = require('path');
 const createError = require('http-errors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+var favicon = require('serve-favicon');
 const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./helpers/config');
 const homeRouter = require('./routes/home-router');
+mongoose.Promise = require('bluebird');
 
 //added these, fix these?
-const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser');
 
+// few more for authentication
+// var passport = require ('passport');
+// require('./server/models/db');, require('./server/config/passport');
 
+//app.use(passport.initialize());
+//app.use('/server',routesApp); //check back on this
 
 /**
  * MongoDB setup
  */
-mongoose.connect('mongodb://' + config.database.username + ':'
+//***************** CURRENTLY OUR CONNECTION DOESNT WORK **********************/
+//***************** can you use this in 'helpers/config.js or keep this here and use the values from config.js??? */
+mongoose.connect('mongodb://' + config.database.username + ':' 
   + config.database.password + '@'
   + config.database.url + ':'
   + config.database.port + '/'
@@ -35,8 +43,8 @@ let app = express();
  */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false'}));
-app.use(express.static(path.join(__dirname, '../dist/nodequiz')));
-app.use('/', express.static(path.join(__dirname, '../dist/nodequiz')));
+app.use(express.static(path.join(__dirname, '../dist/bobs')));//***************** nodequiz??? */
+app.use('/', express.static(path.join(__dirname, '../dist/bobs')));//***************** nodequiz??? */
 app.use(morgan('dev'));
 
 app.use('/api', homeRouter); // wires the homeController to localhost:3000/api

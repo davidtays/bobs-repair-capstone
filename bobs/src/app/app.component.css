@@ -1,0 +1,24 @@
+
+body, mat-card, mat-toolbar, .page-wrap{
+    font-family: 'Just Another Hand', Helvetica, sans-serif;
+    font-size: 48px;
+    text-shadow: 4px 4px 4px #aaa;
+}
+.page-wrap {
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;    
+}
+.wrapper{
+    flex: 1;
+}
+.flex {
+    flex: 1;
+}
+footer{    
+    height: 200px;
+    position: relative;
+    padding-top: 5px;
+    background-color: rgb(174, 188, 250);
+}

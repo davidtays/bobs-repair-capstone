@@ -16,18 +16,41 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
 import { ForgotPasswordComponent } from './security/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './security/reset-password/reset-password.component';
+import { ChangeQuestionsComponent } from './admin/change-questions/change-questions.component';
 import { ManagementComponent } from './admin/management/management.component';
+
+import { RegisterComponent } from './security/register/register.component';
+
+//AUTH SERVICE
+
+import { AuthenticationService } from './services/authentication.service';
+import { AuthGuardService } from './services/auth-guard.service';
+
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
+import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    RegisterComponent,
     ForgotPasswordComponent,
+    SecurityQuestionsComponent,
     ResetPasswordComponent,
+    ChangeQuestionsComponent,
     ManagementComponent,
     MatRadioGroup,
-    MatRadioButton
+    MatRadioButton,
+    RegisterComponent,
+    AboutComponent,
+    ContactComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -40,7 +63,6 @@ import { ManagementComponent } from './admin/management/management.component';
     MatButtonToggleModule,
     MatOptionModule,
     MatSelectModule,
-    MatSelectModule,
     MatTableModule,
     MatButtonModule,
     MatIconModule,
@@ -48,12 +70,16 @@ import { ManagementComponent } from './admin/management/management.component';
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
-    RouterModule,
+    RouterModule, //look into routerModule
     AppRoutingModule,
     HttpClientModule,
-    HttpModule
+    HttpModule,
+    
   ],
-  providers: [LoggedInRouteGuardService],
+  providers: [LoggedInRouteGuardService,
+              AuthenticationService,
+              AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

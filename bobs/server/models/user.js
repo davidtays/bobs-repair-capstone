@@ -26,12 +26,7 @@ var jwt = require('jsonwebtoken');
 }*/
 var userSchema = new mongoose.Schema({
 
-    username:{
-        type: String,
-        //unique=used for logging in
-        unique: true,
-        required: true
-    },
+    
     firstName:{
         type: String,
         unique: false,
@@ -47,20 +42,65 @@ var userSchema = new mongoose.Schema({
         unique: false,
         required: true
     },
-    address:{
-        type: String,
-        unique: false,
-        required: true
-    },
     email:{
         type: String,
         unique: false,
         required: true
     },
-
+    username:{
+        type: String,
+        //unique=used for logging in
+        unique: true,
+        required: true
+    },
+    password:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    dateCreated:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    dateModified:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    q1:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    q2:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    q3:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    a1:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    a2:{
+        type: String,
+        unique: true,
+        required: true
+    },
+    a3:{
+        type: String,
+        unique: true,
+        required: true
+    },
     // salt/hash is one-way encryption
-    hash: String,
-    salt: String
+    //hash: String,
+    //salt: String
 });
 
 //set password
@@ -87,7 +127,7 @@ userSchema.methods.generateJwt = function(){
         address:this.address,
         email:this.email,
         exp: parseInt(expiry.getTime() / 1000),
-    })
+    })//'topsecret');
 }
 
 
@@ -99,4 +139,21 @@ module.exports.getByName = (thisName, callback) => {
     var query = {username: thisName};
     console.log(thisName + '=thisName from the user model');
     User.findOne(query, callback);
+}
+
+//add a user
+module.exports.add = (user,callback) => {
+    user.save(callback);
+}
+
+//get user by id
+module.exports.getById = (id, callback) => {
+    var query = {_id: id};
+    User.findById(query, callback);
+}
+
+//get user by email
+module.exports.getOne = (e, callback) => {
+    var query = {username: e};
+    User.findOne(query,callback);
 }

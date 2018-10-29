@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
     }
    */
 var roleSchema = new mongoose.Schema({
-
+    role: String
 });
 
 const Role = module.exports = mongoose.model('Role', roleSchema);
@@ -19,4 +19,10 @@ module.exports.getByName = (thisName, callback) => {
     var query = {role: thisName};
     console.log(thisName + '=thisName from the service model');
     Role.findOne(query, callback);
+}
+
+module.exports.getAllRoles = (thisName, callback) => {
+    var query = {role: thisName};
+    console.log(thisName + '=thisName from the service model');
+    Role.find(callback);
 }
