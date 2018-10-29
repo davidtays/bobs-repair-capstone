@@ -22,9 +22,10 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
-
     {path: 'manage', component: ManagementComponent},
+    
     {path: 'register', component: RegisterComponent},
+
     {path: 'manage', component: ManagementComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent},
     {path: 'security-questions', component: SecurityQuestionsComponent},

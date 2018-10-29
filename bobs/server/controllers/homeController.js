@@ -10,14 +10,24 @@ var Service = require('../models/service');
 //Register a new user on POST
 exports.user_register = function(req, res){
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-
+  var currentDate = new Date();
   var newUser = new User({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
+    firstName: req.body.firstname,
+    lastName: req.body.lastname,
+    phoneNumber: req.body.phonenumber,
     email: req.body.email,
-    username: req.body.username,
-    password: hashedPassword
+    userName: req.body.username,
+    password: hashedPassword,
+    dateCreated: currentDate.toString(),
+    dateModified: currentDate.toString(),
+    q1: "test1",
+    q2: "test2",
+    q3: "test3",
+    a1: "test4",
+    a2: "test5",
+    a3: "test6"
   });
+  console.log(newUser.firstName + "=firstName, " + newUser.lastName + "=lastName, " + newUser.phoneNumber + "=phoneNumber, " + newUser.email + "=email, " + newUser.userName + "=userName, " + newUser.password + "=password, " + newUser.dateCreated + "=dateCreated, " + newUser.dateModified + "=dateModified");
   User.add(newUser, (err, user) => {
     if(err) return res.status(500).send('There was  problem registering the user.');
 

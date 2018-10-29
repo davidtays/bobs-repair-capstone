@@ -47,7 +47,7 @@ var userSchema = new mongoose.Schema({
         unique: false,
         required: true
     },
-    username:{
+    userName:{
         type: String,
         //unique=used for logging in
         unique: true,
@@ -55,17 +55,17 @@ var userSchema = new mongoose.Schema({
     },
     password:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     dateCreated:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     dateModified:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     q1:{
@@ -85,19 +85,19 @@ var userSchema = new mongoose.Schema({
     },
     a1:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     a2:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     a3:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
-    },
+    }
     // salt/hash is one-way encryption
     //hash: String,
     //salt: String
