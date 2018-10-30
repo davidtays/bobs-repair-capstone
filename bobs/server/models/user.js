@@ -44,7 +44,7 @@ var userSchema = new mongoose.Schema({
     },
     email:{
         type: String,
-        unique: false,
+        unique: true,
         required: true
     },
     userName:{
@@ -70,17 +70,17 @@ var userSchema = new mongoose.Schema({
     },
     q1:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     q2:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     q3:{
         type: String,
-        unique: true,
+        unique: false,
         required: true
     },
     a1:{
@@ -101,6 +101,8 @@ var userSchema = new mongoose.Schema({
     // salt/hash is one-way encryption
     //hash: String,
     //salt: String
+}, {
+    versionKey: false
 });
 
 //set password

@@ -18,5 +18,7 @@ router.post('/login', home_controller.user_login);
 // Get request for logging users out
 router.get('/logout', home_controller.user_logout);
 
+// Load home page with service data by product and user invoices
+router.get('/home', home_controller.all_services);
 
 module.exports = router;

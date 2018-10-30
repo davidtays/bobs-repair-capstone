@@ -14,7 +14,9 @@ export class RegisterComponent {
   };
   user: any = {};
 
-  constructor(private http: HttpClient, private auth:AuthenticationService, private router: Router){}
+  constructor(private http: HttpClient, private auth:AuthenticationService, private router: Router){
+    
+  }
 
   /*register(){
     this.auth.register(this.credentials).subscribe(()=>{

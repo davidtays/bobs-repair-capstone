@@ -25,10 +25,12 @@ exports.user_register = function(req, res){
     q3: "test3",
     a1: "test4",
     a2: "test5",
-    a3: "test6"
+    a3: "test6",
+    
   });
   console.log(newUser.firstName + "=firstName, " + newUser.lastName + "=lastName, " + newUser.phoneNumber + "=phoneNumber, " + newUser.email + "=email, " + newUser.userName + "=userName, " + newUser.password + "=password, " + newUser.dateCreated + "=dateCreated, " + newUser.dateModified + "=dateModified");
   User.add(newUser, (err, user) => {
+    console.log(user.email + "=user.email");
     if(err) return res.status(500).send('There was  problem registering the user.');
 
     var token = jwt.sign({id:user._id}, config.web.secret, {
@@ -58,7 +60,8 @@ exports.user_login = function(req, res){
     if(!user) return res.status(404).send('No user found');
     console.log(user.password + "=returned password")
     var hashedPassword = bcrypt.hashSync(user.password, 8);
-    var passwordIsValid = bcrypt.compareSync(req.body.password, hashedPassword);
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+    console.log(hashedPassword + "=hashedPassword")
 
     if(!passwordIsValid) return res.status(401).send({auth: false, token: null});
 
@@ -75,6 +78,10 @@ exports.user_logout = function(req, res) {
   res.status(200).send({ auth: false, token: null});
 };
 
+exports.all_services = function(req, res) {
+
+  //res.status(200).send({ auth: false, token: null});
+};
 
 exports.get_user_by_name = function(req, res, next){
   console.log(req.body.username + "=req.body.username");
