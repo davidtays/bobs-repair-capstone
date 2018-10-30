@@ -20,12 +20,12 @@ exports.user_register = function(req, res){
     password: hashedPassword,
     dateCreated: currentDate.toString(),
     dateModified: currentDate.toString(),
-    q1: "test1",
-    q2: "test2",
-    q3: "test3",
-    a1: "test4",
-    a2: "test5",
-    a3: "test6",
+    q1: "one",
+    q2: "two",
+    q3: "three",
+    a1: "four",
+    a2: "five",
+    a3: "six",
     
   });
   console.log(newUser.firstName + "=firstName, " + newUser.lastName + "=lastName, " + newUser.phoneNumber + "=phoneNumber, " + newUser.email + "=email, " + newUser.userName + "=userName, " + newUser.password + "=password, " + newUser.dateCreated + "=dateCreated, " + newUser.dateModified + "=dateModified");

@@ -24,84 +24,23 @@ var jwt = require('jsonwebtoken');
     "a2": "johnson",
     "a3": "golf"
 }*/
-var userSchema = new mongoose.Schema({
-
-    
-    firstName:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    lastName:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    phoneNumber:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    email:{
-        type: String,
-        unique: true,
-        required: true
-    },
-    userName:{
-        type: String,
-        //unique=used for logging in
-        unique: true,
-        required: true
-    },
-    password:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    dateCreated:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    dateModified:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    q1:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    q2:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    q3:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    a1:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    a2:{
-        type: String,
-        unique: false,
-        required: true
-    },
-    a3:{
-        type: String,
-        unique: false,
-        required: true
-    }
-    // salt/hash is one-way encryption
-    //hash: String,
-    //salt: String
+var userSchema = new mongoose.Schema({    
+    firstName:String,
+    lastName:String,
+    phoneNumber:String,
+    email:String,
+    userName:String,
+    password:String,
+    dateCreated:String,
+    dateModified:String,
+    q1:String,
+    q2:String,
+    q3:String,
+    a1:String,
+    a2:String,
+    a3:String
 }, {
+    collection: 'users',
     versionKey: false
 });
 

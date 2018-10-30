@@ -34,7 +34,7 @@ export class RegisterComponent {
       username: formData.userName,
       password: formData.password
     }).subscribe(res => {
-      console.log(res.valueOf()), (err) => {console.log(err)}
+      this.router.navigate(['/security-questions'/*, res*/]), (err) => {console.log(err)}
     })
   }
 }
