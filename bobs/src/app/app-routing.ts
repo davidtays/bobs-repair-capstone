@@ -14,6 +14,7 @@ import { ChangeQuestionsComponent } from './admin/change-questions/change-questi
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { RepairServicesComponent } from './repair-services/repair-services.component';
 
 
 const routes : Routes = [
@@ -31,6 +32,7 @@ const routes : Routes = [
     {path: 'security-questions', component: SecurityQuestionsComponent},
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'repair-services', component: RepairServicesComponent},
 
 ];
 

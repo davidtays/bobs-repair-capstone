@@ -10,9 +10,11 @@ var mongoose = require('mongoose');
     "cost": 29.95
 } */
 var serviceSchema = new mongoose.Schema({
-    name: String,
-    cost: Number
-});
+	services:[{
+		name: String,
+		cost: Number
+	}]
+}, {collection:'services'});
 
 const Service = module.exports = mongoose.model('Service', serviceSchema);
 
