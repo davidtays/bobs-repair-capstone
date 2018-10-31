@@ -55,7 +55,7 @@ exports.user_token = function(req, res) {
 //Login as an existing user in, on POST
 exports.user_login = function(req, res){
   console.log(req.body.username + "= req.body.username");
-  User.getOne(req.body.username, function(err,user){
+  User.getOne(req.body.username, function(err, user){
     if(err) return res.status(500).send('Error on server.');
     if(!user) return res.status(404).send('No user found');
     console.log(user.password + "=returned password");
@@ -78,6 +78,7 @@ exports.user_logout = function(req, res) {
   res.status(200).send({ auth: false, token: null});
 };
 
+//get all services from the database
 exports.all_services = function(req, res) {
   Service.getAllServices("all", function(err, services){
     
@@ -90,6 +91,10 @@ exports.all_services = function(req, res) {
   //res.status(200).send({ auth: false, token: null});
 };
 
+
+
+
+//not used!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){
   console.log(req.body.username + "=req.body.username");
   User.getByName(req.body.username, function(err, user){

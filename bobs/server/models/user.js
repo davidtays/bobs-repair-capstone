@@ -41,7 +41,6 @@ var userSchema = new mongoose.Schema({
     a3:String
 }, {
     collection: 'users',
-    versionKey: false
 });
 
 //set password
@@ -77,7 +76,7 @@ userSchema.methods.generateJwt = function(){
 const User = module.exports = mongoose.model('User', userSchema);
 
 module.exports.getByName = (thisName, callback) => {
-    var query = {username: thisName};
+    var query = {userName: thisName};
     console.log(thisName + '=thisName from the user model');
     User.findOne(query, callback);
 }
@@ -95,6 +94,6 @@ module.exports.getById = (id, callback) => {
 
 //get user by email
 module.exports.getOne = (e, callback) => {
-    var query = {username: e};
+    var query = {userName: e};
     User.findOne(query,callback);
 }

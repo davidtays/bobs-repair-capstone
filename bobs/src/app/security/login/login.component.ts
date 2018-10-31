@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
 
   templateUrl: './login.component.html',
-
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   credentials:TokenPayload ={
@@ -25,8 +25,9 @@ constructor(private auth:AuthenticationService,private router:
       });
     }*/
     login(formData){
+      console.log(formData.username + "=username/" + formData.password + "=password");
     this.http.post('/api/login', { username: formData.username, password: formData.password }).subscribe(res => {
-      this.router.navigateByUrl('/api/home'), (err) => {console.log(err)}
+      this.router.navigateByUrl('/home'), (err) => {console.log(err)}
     })
     }
 
