@@ -58,7 +58,7 @@ exports.user_login = function(req, res){
   User.getOne(req.body.username, function(err,user){
     if(err) return res.status(500).send('Error on server.');
     if(!user) return res.status(404).send('No user found');
-    console.log(user.password + "=returned password")
+    console.log(user.password + "=returned password");
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
     console.log(hashedPassword + "=hashedPassword")
@@ -79,7 +79,14 @@ exports.user_logout = function(req, res) {
 };
 
 exports.all_services = function(req, res) {
-
+  Service.getAllServices("all", function(err, services){
+    
+    if(err) return res.status(500).send('Error on server.');
+    if(!services) return res.status(404).send('No services found');
+    //console.log(services[1].name + "=returned services[1].name");
+    console.log(services + "=returned services");
+    res.json(services);
+  });
   //res.status(200).send({ auth: false, token: null});
 };
 

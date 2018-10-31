@@ -1,29 +1,30 @@
-<mat-card>
-  <mat-card-header>
-    <h3>Bob's Computer Repair Services</h3>
-  </mat-card-header>
 
-  <mat-card-content>
-    <form > <!--#f="ngForm" *ngIf="displayIt" (ngSubmit)="onSubmit(f.value)"   this breaks my code-->
-      <div *ngFor="let item of services; let i = index"></div>
-        <p>Services</p>
-          <mat-checkbox [(ngModel)]="name[i]" (ngModelChange)="onSubmit()"></mat-checkbox>
-
+<div *ngIf="services | async; let services; else loading">
+    <mat-card>
+      <mat-card-header>
+        <h3>Bob's Computer Repair Services</h3>
+      </mat-card-header>
+    
+      <mat-card-content>
+          <p>Services</p>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f.value)"> 
+          <div *ngFor="let service of services">            
+            <mat-checkbox>{{service.name}} for {{service.cost}}</mat-checkbox>    
+          </div>
           <div>
             <mat-form-field>
               <input type="text" matInput name="parts" ngModel placeholder="Parts charge...">
             </mat-form-field>
-          </div>
-        
+          </div>          
           <div>
             <mat-form-field>
               <input type="text" matInput name="labor" ngModel placeholder="Labor fees...">
             </mat-form-field>
           </div>
-
-      <div>
-        <button mat-raised-button type="submit">Submit Order</button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+          <div>
+            <button mat-raised-button type="submit">Submit Order</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+</div>
