@@ -1,37 +1,35 @@
 <form #f="ngForm" (ngSubmit)="register(f.value)">
+  <mat-card>
+    <mat-card-content>
+      <h2>Register</h2>
+      <mat-form-field>
+        <input type="text" matInput name="firstName" placeholder="Enter your first name" [(ngModel)]="credentials.firstName">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput name="lastName" placeholder="Enter your last name" [(ngModel)]="credentials.lastName">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput name="phoneNumber" placeholder="Enter your phone number" [(ngModel)]="credentials.phoneNumber">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="text" matInput name="email" placeholder="Enter your email" [(ngModel)]="credentials.email">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput type="text" name="userName" placeholder="Create a username" [(ngModel)]="credentials.username">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input type="password" matInput name="password" placeholder="Create a password" [(ngModel)]="credentials.password">
+      </mat-form-field>
+    </mat-card-content>
 
-  <div class="form-group">
-    <label for="firstName">First Name: </label>
-    <input type="text" class="form-control" name="firstName" placeholder="Enter your first name" [(ngModel)]="credentials.firstName">
-  </div>
+    <mat-card-actions>
+      <button type="submit" class="btn btn-default">Register & Create Account</button>
+    </mat-card-actions>
 
-  <div class="form-group">
-    <label for="lastName">Last Name: </label>
-    <input type="text" class="form-control" name="lastName" placeholder="Enter your last name" [(ngModel)]="credentials.lastName">
-  </div>
-
-  <div class="form-group">
-    <label for="phoneNumber">Phone Number: </label>
-    <input type="text" class="form-control" name="phoneNumber" placeholder="Enter your phone number" [(ngModel)]="credentials.phoneNumber">
-  </div>
-
-  <div class="form-group">
-    <label for="email">Email: </label>
-    <input type="text" class="form-control" name="email" placeholder="Enter your email" [(ngModel)]="credentials.email">
-  </div>
-
-  <hr>
-
-  <div class="form-group">
-    <label for="username">Username: </label>
-    <input type="text" class="form-control" name="userName" placeholder="Create a username" [(ngModel)]="credentials.username">
-  </div>
-
-  <div class="form-group">
-      <label for="password">Password: </label>
-      <input type="password" class="form-control" name="password" placeholder="Create a password" [(ngModel)]="credentials.password">
-  </div>
-  
-  <button type="submit" class="btn btn-default">Register & Create Account</button>
-  
+  </mat-card>
 </form>

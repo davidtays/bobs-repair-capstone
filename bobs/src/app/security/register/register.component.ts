@@ -4,7 +4,9 @@ import { Router } from '@angular/router'
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  templateUrl:'./register.component.html'
+  templateUrl:'./register.component.html',
+  styleUrls: ['./register.component.css']
+  
 })
 export class RegisterComponent {
 

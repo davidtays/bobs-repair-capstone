@@ -2,12 +2,14 @@
 <form #f="ngForm" (ngSubmit)="login(f.value)">
   <mat-card>
     <mat-card-content>
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="Enter Username" [(ngModel)]="credentials.username">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Enter Password" [(ngModel)]="credentials.password">
-      </div>
+      <h2>Login</h2>
+      <mat-form-field>
+        <input type="text" matInput name="username" placeholder="Enter Username" [(ngModel)]="username">
+      </mat-form-field>
+        <br>
+      <mat-form-field>
+        <input type="password" matInput name="password" placeholder="Enter Password" [(ngModel)]="password">
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
         <button type="submit" class="btn btn-default">Sign in!</button>

@@ -1,12 +1,8 @@
 
 <div *ngIf="services | async; let services; else loading">
     <mat-card>
-      <mat-card-header>
-        <h3>Bob's Computer Repair Services</h3>
-      </mat-card-header>
-    
       <mat-card-content>
-          <p>Services</p>
+          <h2>Services</h2>
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value)"> 
           <div *ngFor="let service of services">            
             <mat-checkbox>{{service.name}} for {{service.cost}}</mat-checkbox>    
@@ -28,3 +24,4 @@
       </mat-card-content>
     </mat-card>
 </div>
+<ng-template #loading>Loading Service Data...</ng-template>
