@@ -2,10 +2,10 @@
 <p>
   <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue
 </p>
-
-<mat-card>
-  <h2>View Invoices</h2>
-  <mat-card-content>
+<div *ngIf="services | async; let services; else loading">
+  <mat-card>
+    <h2>View Invoices</h2>
+    <mat-card-content>
       <table style="width:100%">
         <tr>
           <th>Firstname</th>
@@ -26,6 +26,6 @@
         D3.js graph here
     </mat-card-content>  
   </mat-card>
-  
-  
+</div>
+<ng-template #loading>Loading Service Data...</ng-template>
 

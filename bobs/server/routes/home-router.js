@@ -4,7 +4,7 @@ const router = express.Router();
 
 let home_controller = require('../controllers/homeController');
 
-router.get('/', home_controller.index);
+router.get('/', home_controller.user_invoices);
 
 //Post request for registering a user
 router.post('/register', home_controller.user_register);
