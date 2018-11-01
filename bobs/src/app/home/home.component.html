@@ -1,22 +1,22 @@
 
 <p>
-  <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue
+  <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue 
 </p>
-<div *ngIf="services | async; let services; else loading">
+<div *ngIf="invoices | async; let invoices; else loading">
   <mat-card>
     <h2>View Invoices</h2>
     <mat-card-content>
       <table style="width:100%">
         <tr>
-          <th>Firstname</th>
-          <th>Lastname</th> 
           <th>Username</th>
-        </tr>
-        <tr>
-          <td>Jill</td>
-          <td>Smith</td>
-          <td>50</td>
-        </tr>
+          <th>Date</th> 
+          <th>Total</th>
+        </tr> 
+        <tr *ngFor="let invoice of invoices">
+            <td>{{invoice.username}}</td>
+            <td>{{invoice.date}}</td>
+            <td>{{invoice.total}}</td>
+          </tr>
       </table>
   </mat-card-content>  
 </mat-card>
@@ -27,5 +27,5 @@
     </mat-card-content>  
   </mat-card>
 </div>
-<ng-template #loading>Loading Service Data...</ng-template>
+<ng-template #loading>Loading Invoice Data...</ng-template>
 

@@ -95,10 +95,10 @@ exports.all_services = function(req, res) {
 
 //get all services associated with the user
 exports.user_invoices = function(req, res) {
-  var user = localStorage.getItem('user')
-  Invoice.getUserInvoices(user.userName, function(err, invoices){
+  //var username = localStorage.getItem('username')
+  Invoice.getUserInvoices('davetays', function(err, invoices){
     if(err) return res.status(500).send('Error on server.');
-    if(!services) return res.status(404).send('No invoices found');
+    if(!invoices) return res.status(404).send('No invoices found');
     console.log(invoices + "=returned invoices");
     res.json(invoices);
   })  
