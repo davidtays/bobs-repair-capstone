@@ -26,9 +26,10 @@ constructor(private auth:AuthenticationService,private router:
     }*/
     login(formData){
       console.log(formData.username + "=username/" + formData.password + "=password");
-    this.http.post('/api/login', { username: formData.username, password: formData.password }).subscribe(res => {
-      this.router.navigateByUrl('/home'), (err) => {console.log(err)}
-    })
+      
+      this.http.post('/api/login', { username: formData.username, password: formData.password }).subscribe(res => {
+      this.router.navigateByUrl('/home'), (err) => {console.log(err)}})
+      localStorage.setItem('username', formData.username);
     }
 
 }

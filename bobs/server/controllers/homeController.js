@@ -5,6 +5,7 @@ var config = require('../helpers/config');
 var Question = require('../models/question');
 var Role = require('../models/role');
 var Service = require('../models/service');
+var Invoice = require('../models/invoice');
 
 
 //Register a new user on POST
@@ -58,6 +59,7 @@ exports.user_login = function(req, res){
   User.getOne(req.body.username, function(err, user){
     if(err) return res.status(500).send('Error on server.');
     if(!user) return res.status(404).send('No user found');
+    localStorage.setItem('user', user);
     console.log(user.password + "=returned password");
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -91,7 +93,16 @@ exports.all_services = function(req, res) {
   //res.status(200).send({ auth: false, token: null});
 };
 
-
+//get all services associated with the user
+exports.user_invoices = function(req, res) {
+  var user = localStorage.getItem('user')
+  Invoice.getUserInvoices(user.userName, function(err, invoices){
+    if(err) return res.status(500).send('Error on server.');
+    if(!services) return res.status(404).send('No invoices found');
+    console.log(invoices + "=returned invoices");
+    res.json(invoices);
+  })  
+};
 
 
 //not used!!!!!!!!!!!!!

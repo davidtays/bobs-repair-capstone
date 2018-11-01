@@ -4,7 +4,7 @@ const router = express.Router();
 
 let home_controller = require('../controllers/homeController');
 
-router.get('/', home_controller.index);
+router.get('/', home_controller.user_invoices);
 
 //Post request for registering a user
 router.post('/register', home_controller.user_register);
@@ -19,7 +19,7 @@ router.post('/login', home_controller.user_login);
 router.get('/logout', home_controller.user_logout);
 
 // Load home page with  user invoices
-router.get('/home', home_controller.user-invoices);
+router.get('/home', home_controller.user_invoices);
 
 // Load home page with service data by product and user invoices
 router.get('/repair-services', home_controller.all_services);
