@@ -105,6 +105,10 @@ exports.get_user_by_name = function(req, res, next){
   })
 };
 
+exports.user_invoices = function (req,res){
+  
+}
+
 
 exports.index = function(req, res, next) {
   res.json("Home Controller works!")
