@@ -16,6 +16,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { RepairServicesComponent } from './repair-services/repair-services.component';
 
+// http codes
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes : Routes = [
     {path: '', component: HomeComponent},
@@ -34,12 +36,17 @@ const routes : Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'repair-services', component: RepairServicesComponent},
 
+    //404
+    {path: '**', component:NotFoundComponent}
+
+
+
 ];
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(routes, {useHash: true})
+        RouterModule.forRoot(routes, {useHash: true}),
     ],
     exports:[
         RouterModule

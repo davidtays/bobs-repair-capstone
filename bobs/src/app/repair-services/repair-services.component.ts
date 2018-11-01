@@ -21,8 +21,17 @@ export class RepairServicesComponent implements OnInit {
   user: any;
 
   constructor(private http: HttpClient, private router: Router) {
+/* WHAT I HAD
+    <<<<<<< HEAD
+    this.http.post('/api/select', 
+    {service: localStorage.getItem('service')}).subscribe(res => 
+      { this.service = res; this.service = this.service.name, console.log(res), (err) => {console.log(err)}})
+    this.services = []; 
+=======
+*/
     //this.http.get('/api/repair-services', {}).subscribe(res => { this.services = res;  console.log(res), (err) => {console.log(err)}})
     this.services = this.http.get('/api/repair-services', {});
+
     this.displayIt = false;
     this.disabled = false;
     this.cost=0;
