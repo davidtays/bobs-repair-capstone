@@ -1,3 +1,17 @@
-<p>
-  contact works!
-</p>
+<mat-card>
+  <mat-card-title>
+    <h3>Contact Us</h3>
+  </mat-card-title>
+  
+  <mat-card-content>
+    <a href="mailto:bobscomputer@gmail.com" target="_top">Email</a>
+    <h5>Phone: 402-555-0123</h5> 
+    <h5>Or, come visit our store at 555 Cornhusker Rd, Bellevue, Nebraska 68005</h5>
+    <hr> 
+    <h4>Store Hours:</h4>
+    <ul>
+        <li *ngFor="let day of days"> {{day}}</li>
+    </ul>
+  </mat-card-content>  
+</mat-card>
+

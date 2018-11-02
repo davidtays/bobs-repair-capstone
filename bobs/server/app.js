@@ -69,13 +69,6 @@ app.use(function (err, req, res, next) {
 });
 
 
-
-app.get("/not-found", function(request, response) {
-  response.status(404);
-  response.json({
-      error: "Page not found!"
-  })
-});
 /*
 app.get("/501", function(request, response) {
   response.status(501);
