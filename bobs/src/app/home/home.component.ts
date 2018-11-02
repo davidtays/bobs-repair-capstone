@@ -12,12 +12,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {}
 
   invoices: Observable<{}>;
-
+  name: any = localStorage.setItem("username", "davetays");
   constructor(private http: HttpClient, private router: Router) {
       //this.http.get('/api/home', {}).subscribe(res => { this.invoices = res;  console.log(res), (err) => {console.log(err)}})
-      this.invoices = this.http.get('/api/home', {});
-   }
-
-  
-
+      this.invoices = this.http.get('/api/home/' + localStorage.getItem('username'),  {});
+    }
 }

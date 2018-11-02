@@ -96,7 +96,7 @@ exports.all_services = function(req, res) {
 //get all services associated with the user
 exports.user_invoices = function(req, res) {
   //var username = localStorage.getItem('username')
-  Invoice.getUserInvoices('davetays', function(err, invoices){
+  Invoice.getUserInvoices(req.params.username, function(err, invoices){
     if(err) return res.status(500).send('Error on server.');
     if(!invoices) return res.status(404).send('No invoices found');
     console.log(invoices + "=returned invoices");
@@ -116,9 +116,6 @@ exports.get_user_by_name = function(req, res, next){
   })
 };
 
-exports.user_invoices = function (req,res){
-  
-}
 
 
 exports.index = function(req, res, next) {

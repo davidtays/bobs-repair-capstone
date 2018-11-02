@@ -19,7 +19,7 @@ router.post('/login', home_controller.user_login);
 router.get('/logout', home_controller.user_logout);
 
 // Load home page with  user invoices
-router.get('/home', home_controller.user_invoices);
+router.get('/home/:username', home_controller.user_invoices);
 
 // Load home page with service data by product and user invoices
 router.get('/repair-services', home_controller.all_services);
