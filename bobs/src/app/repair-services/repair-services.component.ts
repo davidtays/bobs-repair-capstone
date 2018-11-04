@@ -22,6 +22,7 @@ export class RepairServicesComponent implements OnInit {
   user: any;
   checked: boolean;
   servicesSelected: Array<String> = []
+  invoice: any;
 
   constructor(private http: HttpClient, private router: Router) {
 /* WHAT I HAD
@@ -57,11 +58,21 @@ export class RepairServicesComponent implements OnInit {
       }
         
     };
+    //create order object
+    this.http.post('/api/save-invoice', {
+      username: localStorage.getItem('username'),
+      labor: formData.labor,
+      total: this.cost,
+      services: this.servicesSelected
+    }).subscribe(res => {
+      this.router.navigate(['/home'/*, res*/]), (err) => {console.log(err)}
+    })
+
     console.log(formData);
     console.log(this.servicesSelected);
     console.log(this.cost);
     console.log(this.user);
-    //save user
+    //save invoice
 
     //clear values
     this.servicesSelected = [];

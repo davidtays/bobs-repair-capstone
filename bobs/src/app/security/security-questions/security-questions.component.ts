@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Observable, Subscription, of } from 'rxjs';
 
 @Component({
   selector: 'app-security-questions',
@@ -6,8 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./security-questions.component.css']
 })
 export class SecurityQuestionsComponent implements OnInit {
+  questions: Observable<{}>;
 
-  constructor() { }
+
+  constructor(private http: HttpClient, private router: Router) { 
+    this.questions = this.http.get('/api/security-questions',  {});
+      
+  }
 
   ngOnInit() {
   }

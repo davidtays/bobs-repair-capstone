@@ -12,15 +12,16 @@ var Invoice = require('../models/invoice');
 exports.user_register = function(req, res){
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var currentDate = new Date();
-  var newUser = new User({
+  var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
+    var newUser = new User({
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     phoneNumber: req.body.phonenumber,
     email: req.body.email,
     userName: req.body.username,
     password: hashedPassword,
-    dateCreated: currentDate.toString(),
-    dateModified: currentDate.toString(),
+    dateCreated: dateTime,
+    dateModified: dateTime,
     q1: "one",
     q2: "two",
     q3: "three",
@@ -116,9 +117,10 @@ exports.total_invoices = function(req, res){
 //save an invoice
 exports.save_invoice = function(req, res){
   var currentDate = new Date();
+  var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
   var newInvoice = new Invoice({
     username: req.body.username,
-    date: currentDate.toString(),
+    date: dateTime,
     labor: req.body.labor,
     total: req.body.total,
     services: req.body.services    
@@ -131,6 +133,18 @@ exports.save_invoice = function(req, res){
   });
 }
 
+//get all security-questions
+exports.all_questions = function(req, res){
+  console.log("inside the controller for seccurity questions");
+  Question.getAllQuestions("all", function(err, questions){
+
+    if(err) return res.status(500).send('Error on server.');
+    if(!questions) return res.status(404).send('No questions found');
+    
+    console.log(questions + "=returned questions");
+    res.json(questions);
+  });
+}
 //not used!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){
   console.log(req.body.username + "=req.body.username");

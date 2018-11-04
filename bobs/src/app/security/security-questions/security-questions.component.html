@@ -1,13 +1,19 @@
-<mat-card>
-  <mat-card-content>
-      <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
-          <mat-form-field class="example-full-width">
-            <input matInput placeholder="Security Question" value="What is your favorite color?">
-          </mat-form-field>
-        
-          <mat-form-field class="example-full-width">
-            <textarea matInput placeholder="Enter your answer"></textarea>
-          </mat-form-field>
-        </form>
-  </mat-card-content>
-</mat-card>
+<div *ngIf="questions | async; let questions; else loading">
+  <mat-card>
+    <mat-card-content>
+        <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
+            <div *ngFor="let question of questions; let i = index">
+              <mat-form-field>
+              
+                <input matInput name="{{question.question}}" placeholder="{{question.question}}" ngModel>
+                
+              </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button type="submit">Submit Answers</button>
+              </div>
+          </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<ng-template #loading>Loading Question Data...</ng-template>
