@@ -30,3 +30,11 @@ module.exports.getUserInvoices = (username, callback) => {
     console.log(username + "=username frim the invoice model");
     Invoice.find(query, callback);
 }
+
+module.exports.getInvoiceSum = (username, callback) => {
+    Invoice.aggregate([{ $group: { _id: {$productTotal: ""}, total: { $sum: "$total"}}}], callback);
+}
+
+module.exports.add = (invoice,callback) => {
+    invoice.save(callback);
+}

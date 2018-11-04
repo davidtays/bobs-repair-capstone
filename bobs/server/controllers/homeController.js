@@ -29,7 +29,7 @@ exports.user_register = function(req, res){
     a3: "six",
     
   });
-  console.log(newUser.firstName + "=firstName, " + newUser.lastName + "=lastName, " + newUser.phoneNumber + "=phoneNumber, " + newUser.email + "=email, " + newUser.userName + "=userName, " + newUser.password + "=password, " + newUser.dateCreated + "=dateCreated, " + newUser.dateModified + "=dateModified");
+  
   User.add(newUser, (err, user) => {
     console.log(user.email + "=user.email");
     if(err) return res.status(500).send('There was  problem registering the user.');
@@ -95,15 +95,41 @@ exports.all_services = function(req, res) {
 
 //get all services associated with the user
 exports.user_invoices = function(req, res) {
-  //var username = localStorage.getItem('username')
-  Invoice.getUserInvoices(req.params.username, function(err, invoices){
+Invoice.getUserInvoices(req.params.username, function(err, invoices){
     if(err) return res.status(500).send('Error on server.');
     if(!invoices) return res.status(404).send('No invoices found');
     console.log(invoices + "=returned invoices");
     res.json(invoices);
-  })  
+  }); 
 };
 
+//get sum of all invoices
+exports.total_invoices = function(req, res){
+  Invoice.getInvoiceSum("", function(err, total){
+    if(err) return res.status(500).send('Error on server.');
+    if(!invoices) return res.status(404).send('No invoices found');
+    console.log(total + "=total from total_invoices");
+    res.json(total);
+  });
+};
+
+//save an invoice
+exports.save_invoice = function(req, res){
+  var currentDate = new Date();
+  var newInvoice = new Invoice({
+    username: req.body.username,
+    date: currentDate.toString(),
+    labor: req.body.labor,
+    total: req.body.total,
+    services: req.body.services    
+  });  
+  Invoice.add(newInvoice, (err, invoice) => {
+    console.log(invoice.username + "=invoice.username");
+    if(err) return res.status(500).send('There was  problem saving the invoice.');
+    res.json(invoice);
+    //res.status(200).send({auth:true, token:token});
+  });
+}
 
 //not used!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){

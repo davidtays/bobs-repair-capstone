@@ -24,4 +24,10 @@ router.get('/home/:username', home_controller.user_invoices);
 // Load home page with service data by product and user invoices
 router.get('/repair-services', home_controller.all_services);
 
+// Save invoice 
+router.post('/save-invoice', home_controller.save_invoice);
+
+// Get all services
+router.get( '/home-services', home_controller.all_services);
+
 module.exports = router;

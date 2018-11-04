@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, Subscription, of } from 'rxjs';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-repair-services',
@@ -17,8 +18,10 @@ export class RepairServicesComponent implements OnInit {
   services: Observable<{}>;//any = [];
   displayIt: boolean;
   disabled: boolean;
-  cost:any;
+  cost: number;
   user: any;
+  checked: boolean;
+  servicesSelected: Array<String> = []
 
   constructor(private http: HttpClient, private router: Router) {
 /* WHAT I HAD
@@ -31,18 +34,37 @@ export class RepairServicesComponent implements OnInit {
 */
     //this.http.get('/api/repair-services', {}).subscribe(res => { this.services = res;  console.log(res), (err) => {console.log(err)}})
     this.services = this.http.get('/api/repair-services', {});
-
+    this.user = localStorage.getItem('username');
     this.displayIt = false;
     this.disabled = false;
     this.cost=0;
+    this.checked = false;
 
   }
 
 
   onSubmit(formData){
-
-    if(formData.name="Virus Removal"){
-      this.cost=29.95
+    for(var key in formData) {
+      if(formData[key] != null && formData[key] != ""){
+        //console.log(key + "of" + formData[key]);
+        if(key != 'parts' && key != 'labor'){
+          var strSplit = key.split('/');
+          this.servicesSelected.push(strSplit[0]);
+          this.cost = this.cost + parseFloat(strSplit[1]) ;          
+        }else{
+          this.cost = this.cost + parseFloat(formData[key]);
+        }
+      }
+        
     };
+    console.log(formData);
+    console.log(this.servicesSelected);
+    console.log(this.cost);
+    console.log(this.user);
+    //save user
+
+    //clear values
+    this.servicesSelected = [];
+    this.cost = 0;
   }
 }
