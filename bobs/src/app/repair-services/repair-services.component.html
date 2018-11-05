@@ -4,9 +4,10 @@
       <mat-card-content>
           <h2>Services</h2>
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value)"> 
-          <div *ngFor="let service of services">            
-            <mat-checkbox>{{service.name}} for {{service.cost}}</mat-checkbox>    
+          <div *ngFor="let service of services; let i = index">             
+            <mat-checkbox name="{{service.name}}/{{service.cost}}" (ngModel)="checked">{{service.name}} for {{service.cost}}</mat-checkbox>
           </div>
+          
           <div>
             <mat-form-field>
               <input type="text" matInput name="parts" ngModel placeholder="Parts charge...">

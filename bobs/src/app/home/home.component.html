@@ -23,7 +23,12 @@
 <mat-card>
     <h2>Amount Total By Service</h2>
     <mat-card-content>
-        D3.js graph here
+        <button *ngIf="!displayIt" mat-raised-button type="submit" (click) = "toggleChart()">Show Product Chart</button>
+        <div *ngIf="displayIt">
+          <svg width='500' height='200'></svg>
+          <script src="https://d3js.org/d3.v5.min.js"></script>
+        </div>
+        
     </mat-card-content>  
   </mat-card>
 </div>

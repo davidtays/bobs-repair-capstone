@@ -56,9 +56,12 @@ import { ServerIssueComponent } from './server-issue/server-issue.component';
     ContactComponent,
     RepairServicesComponent,
     NotFoundComponent,
+<<<<<<< HEAD
     ServerIssueComponent,
 
 
+=======
+>>>>>>> ee556a1dc0d40f776ffe90472d993300fc7263d0
   ],
   imports: [
     BrowserModule,

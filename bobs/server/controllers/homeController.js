@@ -12,15 +12,16 @@ var Invoice = require('../models/invoice');
 exports.user_register = function(req, res){
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var currentDate = new Date();
-  var newUser = new User({
+  var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
+    var newUser = new User({
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     phoneNumber: req.body.phonenumber,
     email: req.body.email,
     userName: req.body.username,
     password: hashedPassword,
-    dateCreated: currentDate.toString(),
-    dateModified: currentDate.toString(),
+    dateCreated: dateTime,
+    dateModified: dateTime,
     q1: "one",
     q2: "two",
     q3: "three",
@@ -29,7 +30,7 @@ exports.user_register = function(req, res){
     a3: "six",
     
   });
-  console.log(newUser.firstName + "=firstName, " + newUser.lastName + "=lastName, " + newUser.phoneNumber + "=phoneNumber, " + newUser.email + "=email, " + newUser.userName + "=userName, " + newUser.password + "=password, " + newUser.dateCreated + "=dateCreated, " + newUser.dateModified + "=dateModified");
+  
   User.add(newUser, (err, user) => {
     console.log(user.email + "=user.email");
     if(err) return res.status(500).send('There was  problem registering the user.');
@@ -95,16 +96,55 @@ exports.all_services = function(req, res) {
 
 //get all services associated with the user
 exports.user_invoices = function(req, res) {
-  //var username = localStorage.getItem('username')
-  Invoice.getUserInvoices(req.params.username, function(err, invoices){
+Invoice.getUserInvoices(req.params.username, function(err, invoices){
     if(err) return res.status(500).send('Error on server.');
     if(!invoices) return res.status(404).send('No invoices found');
     console.log(invoices + "=returned invoices");
     res.json(invoices);
-  })  
+  }); 
 };
 
+//get sum of all invoices
+exports.total_invoices = function(req, res){
+  Invoice.getInvoiceSum("", function(err, total){
+    if(err) return res.status(500).send('Error on server.');
+    if(!invoices) return res.status(404).send('No invoices found');
+    console.log(total + "=total from total_invoices");
+    res.json(total);
+  });
+};
 
+//save an invoice
+exports.save_invoice = function(req, res){
+  var currentDate = new Date();
+  var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
+  var newInvoice = new Invoice({
+    username: req.body.username,
+    date: dateTime,
+    labor: req.body.labor,
+    total: req.body.total,
+    services: req.body.services    
+  });  
+  Invoice.add(newInvoice, (err, invoice) => {
+    console.log(invoice.username + "=invoice.username");
+    if(err) return res.status(500).send('There was  problem saving the invoice.');
+    res.json(invoice);
+    //res.status(200).send({auth:true, token:token});
+  });
+}
+
+//get all security-questions
+exports.all_questions = function(req, res){
+  console.log("inside the controller for seccurity questions");
+  Question.getAllQuestions("all", function(err, questions){
+
+    if(err) return res.status(500).send('Error on server.');
+    if(!questions) return res.status(404).send('No questions found');
+    
+    console.log(questions + "=returned questions");
+    res.json(questions);
+  });
+}
 //not used!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){
   console.log(req.body.username + "=req.body.username");
