@@ -9,6 +9,9 @@ router.get('/', home_controller.user_invoices);
 //Post request for registering a user
 router.post('/register', home_controller.user_register);
 
+//Post request for registering a user
+//router.post('/update-user', home_controller.user_update);
+
 //Get request for verifying user tokens
 router.get('/token', checkToken, home_controller.user_token);
 

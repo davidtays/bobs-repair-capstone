@@ -9,7 +9,7 @@ import {AuthenticationService } from './services/authentication.service';
 export class AppComponent {
   constructor(public auth:AuthenticationService){}
   ngOnInit(){
-    localStorage.setItem('username', 'davetays');
+    localStorage.setItem('username', 'test');
     localStorage.setItem('user', 'test');
   }
 }

@@ -19,15 +19,16 @@ export class HomeComponent implements OnInit {
   invoices: Observable<{}>;
   services: any = [];
   displayIt: boolean;
-  //data: number[];
+  data: number[] = [];
   
-  name: any = localStorage.setItem("username", "davetays");
+  name: any;// = localStorage.setItem("username", "davetays");
   constructor(private http: HttpClient, private router: Router) {
       //this.http.get('/api/home', {}).subscribe(res => { this.invoices = res;  console.log(res), (err) => {console.log(err)}})
       this.invoices = this.http.get('/api/home/' + localStorage.getItem('username'),  {});
       //this.services = this.http.get('/api/home-services/', {});
       this.http.get('/api/home-services/',{}).subscribe(res => { this.services = res; console.log(res), (err) => {console.log(err)}});
       this.displayIt = false;
+      this.data = [80, 120, 60, 150,200];
   }
   getPrices(){
   
@@ -39,17 +40,19 @@ export class HomeComponent implements OnInit {
 
   toggleChart(){
     this.displayIt = true;
+    this.buildChart();
   }
   buildChart(){
-    var data = [80, 120, 60, 150,200];
+    console.log('start of buildchart');
+    
     var svgWidth = 500, svgHeight = 200, barPadding = 5;
-    var barWidth = (svgWidth / data.length);
+    var barWidth = (svgWidth / this.data.length);
 
     var svg = d3.select('svg')
           .attr('width', svgWidth)
           .attr('height', svgHeight);
     svg.selectAll("rect")
-          .data(data)
+          .data(this.data)
           .enter()
           .append('rect')
           .attr("y", function(d){
@@ -63,6 +66,9 @@ export class HomeComponent implements OnInit {
           .attr("transform", function(d, i){
             var translate = [barWidth * i, 0];
             return "translate(" + translate + ")";
-          })
+          });
+          
+    console.log(svg);
+    return svg
   }
 }

@@ -28,15 +28,24 @@ export class RegisterComponent {
     });
   }*/
   register(formData){
-    this.http.post('/api/register', {
+    this.user = {
       firstname: formData.firstName,
       lastname: formData.lastName,
       phonenumber: formData.phoneNumber,
       email: formData.email,
       username: formData.userName,
       password: formData.password
-    }).subscribe(res => {
+    }
+    localStorage.setItem('user', JSON.stringify(this.user));
+    /*this.http.post('/api/register', {
+      firstname: formData.firstName,
+      lastname: formData.lastName,
+      phonenumber: formData.phoneNumber,
+      email: formData.email,
+      username: formData.userName,
+      password: formData.password
+    }).subscribe(res => {*/
       this.router.navigate(['/security-questions'/*, res*/]), (err) => {console.log(err)}
-    })
+    //})
   }
 }
