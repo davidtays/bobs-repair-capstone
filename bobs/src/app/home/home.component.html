@@ -1,31 +1,36 @@
 
 <p>
-  <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue
+  <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue 
 </p>
-
-<mat-card>
-  <h2>View Invoices</h2>
-  <mat-card-content>
+<div *ngIf="invoices | async; let invoices; else loading">
+  <mat-card>
+    <h2>View Invoices</h2>
+    <mat-card-content>
       <table style="width:100%">
         <tr>
-          <th>Firstname</th>
-          <th>Lastname</th> 
           <th>Username</th>
-        </tr>
-        <tr>
-          <td>Jill</td>
-          <td>Smith</td>
-          <td>50</td>
-        </tr>
+          <th>Date</th> 
+          <th>Total</th>
+        </tr> 
+        <tr *ngFor="let invoice of invoices">
+            <td>{{invoice.username}}</td>
+            <td>{{invoice.date}}</td>
+            <td>{{invoice.total}}</td>
+          </tr>
       </table>
   </mat-card-content>  
 </mat-card>
 <mat-card>
     <h2>Amount Total By Service</h2>
     <mat-card-content>
-        D3.js graph here
+        <button  mat-raised-button type="submit" (click) = "toggleChart()">Show Product Chart</button>
+        <div *ngIf="displayIt">
+          <svg width='500' height='200'></svg>
+          <script src="https://d3js.org/d3.v5.min.js"></script>
+        </div>
+        
     </mat-card-content>  
   </mat-card>
-  
-  
+</div>
+<ng-template #loading>Loading Invoice Data...</ng-template>
 

@@ -1,0 +1,17 @@
+
+//base
+npm install @angular/material --save
+npm install -g @angular/cli
+
+//inside directory
+npm install @angular/cdk @angular/animations @angular/flex-layout @angular-devkit/schematics --save
+
+//other things that help
+
+npm install express-jwt jsonwebtoken passport passport-local express logger body-parser morgan mongoose cookie-parser serve-favicon --save
+
+
+just npm install
+
+
+

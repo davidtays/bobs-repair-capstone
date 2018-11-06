@@ -29,6 +29,11 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
+import { RepairServicesComponent } from './repair-services/repair-services.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+// import { ServerIssueComponent } from './server-issue/server-issue.component';
+
+
 
 
 
@@ -49,8 +54,8 @@ import { SecurityQuestionsComponent } from './security/security-questions/securi
     RegisterComponent,
     AboutComponent,
     ContactComponent,
-
-
+    RepairServicesComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

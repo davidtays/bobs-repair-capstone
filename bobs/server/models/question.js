@@ -12,12 +12,12 @@ var mongoose = require('mongoose');
 */
 var questionSchema = new mongoose.Schema({
     question: String
-});
+}, {collection:'questions'});
 
 const Question = module.exports = mongoose.model('Question', questionSchema);
 
-module.exports.getAll = (thisName, callback) => {
+module.exports.getAllQuestions = (thisName, callback) => {
     var query = {question: thisName};
-    console.log(thisName + '=thisName from the service model');
+    console.log(thisName + '=thisName from the question model');
     Question.find(callback);
 }

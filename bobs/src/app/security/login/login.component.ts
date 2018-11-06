@@ -6,15 +6,16 @@ import { HttpClient } from '@angular/common/http';
 @Component({
 
   templateUrl: './login.component.html',
-
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   credentials:TokenPayload ={
     username:'',
     password:''
   };
-  username:'';
-  password:'';
+  user: any;
+  username: String = '';
+  password: String = '';
 constructor(private auth:AuthenticationService,private router:
   Router, private http: HttpClient){}
   
@@ -25,9 +26,17 @@ constructor(private auth:AuthenticationService,private router:
       });
     }*/
     login(formData){
-    this.http.post('/api/login', { username: formData.username, password: formData.password }).subscribe(res => {
-      console.log(res.valueOf()), (err) => {console.log(err)}
-    })
+      console.log(formData.username + "=username/" + formData.password + "=password");
+      localStorage.setItem('username', formData.username);
+      this.http.post('/api/login', { username: formData.username, password: formData.password })
+        .subscribe(res => {
+          this.user = res; 
+           
+          localStorage.setItem('user', JSON.stringify(this.user));
+          console.log(JSON.parse(localStorage.getItem('user')));
+          this.router.navigateByUrl('/home'), (err) => {console.log(err)}
+      })
+      
     }
 
 }

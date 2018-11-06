@@ -14,7 +14,11 @@ import { ChangeQuestionsComponent } from './admin/change-questions/change-questi
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { RepairServicesComponent } from './repair-services/repair-services.component';
 
+// http codes
+import { NotFoundComponent } from './not-found/not-found.component';
+// import { ServerIssueComponent } from './server-issue/server-issue.component';
 
 const routes : Routes = [
     {path: '', component: HomeComponent},
@@ -22,21 +26,29 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
-
     {path: 'manage', component: ManagementComponent},
+    
     {path: 'register', component: RegisterComponent},
+
     {path: 'manage', component: ManagementComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent},
     {path: 'security-questions', component: SecurityQuestionsComponent},
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
+    {path: 'repair-services', component: RepairServicesComponent},
+
+    //404
+    {path: '**', component:NotFoundComponent}
+    //{path: 'server', component:ServerIssueComponent}
+
+
 
 ];
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forRoot(routes, {useHash: true})
+        RouterModule.forRoot(routes, {useHash: true}),
     ],
     exports:[
         RouterModule

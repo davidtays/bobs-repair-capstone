@@ -20,6 +20,9 @@ var cookieParser = require('cookie-parser');
 //app.use(passport.initialize());
 //app.use('/server',routesApp); //check back on this
 
+
+
+
 /**
  * MongoDB setup
  */
@@ -64,6 +67,16 @@ app.use(function (err, req, res, next) {
 
   res.sendStatus(err.status);
 });
+
+
+/*
+app.get("/501", function(request, response) {
+  response.status(501);
+  response.json({
+      error: "Please contact the administrator."
+  })
+});
+*/
 
 module.exports = app;
 
