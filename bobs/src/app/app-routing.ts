@@ -18,6 +18,7 @@ import { RepairServicesComponent } from './repair-services/repair-services.compo
 
 // http codes
 import { NotFoundComponent } from './not-found/not-found.component';
+// import { ServerIssueComponent } from './server-issue/server-issue.component';
 
 const routes : Routes = [
     {path: '', component: HomeComponent},
@@ -38,6 +39,7 @@ const routes : Routes = [
 
     //404
     {path: '**', component:NotFoundComponent}
+    //{path: 'server', component:ServerIssueComponent}
 
 
 
