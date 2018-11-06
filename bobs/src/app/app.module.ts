@@ -31,7 +31,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { RepairServicesComponent } from './repair-services/repair-services.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ServerIssueComponent } from './server-issue/server-issue.component';
+// import { ServerIssueComponent } from './server-issue/server-issue.component';
 
 
 
@@ -56,12 +56,6 @@ import { ServerIssueComponent } from './server-issue/server-issue.component';
     ContactComponent,
     RepairServicesComponent,
     NotFoundComponent,
-<<<<<<< HEAD
-    ServerIssueComponent,
-
-
-=======
->>>>>>> ee556a1dc0d40f776ffe90472d993300fc7263d0
   ],
   imports: [
     BrowserModule,
