@@ -24,6 +24,9 @@ router.get('/logout', home_controller.user_logout);
 // Load home page with  user invoices
 router.get('/home/:username', home_controller.user_invoices);
 
+//get all user invoices
+router.get('/home-invoices/', home_controller.get_all_invoices);
+
 //get all security questions available
 router.get('/security-questions', home_controller.all_questions);
 

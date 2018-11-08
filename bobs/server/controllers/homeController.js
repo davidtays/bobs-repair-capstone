@@ -116,6 +116,15 @@ exports.total_invoices = function(req, res){
   });
 };
 
+exports.get_all_invoices = function(req,res){
+  Invoice.getAllInvoices("", function(err, invoices){
+    if(err) return res.status(500).send('Error on server.');
+    if(!invoices) return res.status(404).send('No invoices found');
+    console.log(invoices + "=returned invoices");
+    res.json(invoices);
+  }); 
+};
+
 //save an invoice
 exports.save_invoice = function(req, res){
   var currentDate = new Date();
