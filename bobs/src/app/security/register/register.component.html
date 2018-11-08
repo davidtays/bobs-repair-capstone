@@ -2,34 +2,98 @@
   <mat-card>
     <mat-card-content>
       <h2>Register</h2>
-      <mat-form-field>
-        <input type="text" matInput name="firstName" placeholder="Enter your first name" [(ngModel)]="credentials.firstName">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input type="text" matInput name="lastName" placeholder="Enter your last name" [(ngModel)]="credentials.lastName">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input type="text" matInput name="phoneNumber" placeholder="Enter your phone number" [(ngModel)]="credentials.phoneNumber">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input type="text" matInput name="email" placeholder="Enter your email" [(ngModel)]="credentials.email">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input matInput type="text" name="userName" placeholder="Create a username" [(ngModel)]="credentials.username">
-      </mat-form-field>
-      <br>
-      <mat-form-field>
-        <input type="password" matInput name="password" placeholder="Create a password" [(ngModel)]="credentials.password">
-      </mat-form-field>
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="firstName" matInput required name="firstName" class="form-control" placeholder="Enter your first name" [(ngModel)]="credentials.firstName" #firstName="ngModel">
+              <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
+                <div *ngIf="firstName.errors.required">
+                  First name is required.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="lastName" matInput required name="lastName" class="form-control" placeholder="Enter your last name" [(ngModel)]="credentials.lastName" #lastName="ngModel">
+              <div *ngIf="lastName.invalid && lastName.touched" class="alert alert-danger">
+                <div *ngIf="lastName.errors.required">
+                  Last name is required.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="phoneNumber" matInput required minlength="10" name="phoneNumber" class="form-control" placeholder="Enter your phone number" [(ngModel)]="credentials.phoneNumber" #phoneNumber="ngModel">
+              <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)" class="alert alert-danger">
+                <div *ngIf="phoneNumber.errors.required">
+                  Phone number is required.
+                </div>
+                <div *ngIf="phoneNumber.errors.minlength">
+                  Phone number must be 10 digits.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="address" matInput required name="address" class="form-control" placeholder="Enter your address" [(ngModel)]="credentials.address" #address="ngModel">
+              <div *ngIf="address.invalid && address.touched" class="alert alert-danger">
+                <div *ngIf="address.errors.required">
+                  Address is required.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="email" matInput required name="email" class="form-control" placeholder="Enter your email" [(ngModel)]="credentials.email" #email="ngModel">
+              <div *ngIf="email.invalid && email.touched" class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="text" id="username" matInput required name="username" class="form-control" placeholder="Register username" [(ngModel)]="credentials.username" #username="ngModel">
+              <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
+                <div *ngIf="username.errors.required">
+                  Username is required.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+        <div class="form-group">
+          <mat-form-field>
+            <input type="mypassword" id="password" matInput required name="password" class="form-control" placeholder="Register password" [(ngModel)]="credentials.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+              <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
+                <div *ngIf="password.errors.required">
+                  Password must contain one uppercase letter and at least one number.
+                </div>
+              </div>
+          </mat-form-field>
+        </div>
+        <br>
+
+
+
+      <mat-card-actions>
+        <button type="submit" class="btn btn-default" [disabled]="!f.form.valid">Register & Create Account</button>
+      </mat-card-actions>
     </mat-card-content>
-
-    <mat-card-actions>
-      <button type="submit" class="btn btn-default">Register & Create Account</button>
-    </mat-card-actions>
-
   </mat-card>
 </form>
