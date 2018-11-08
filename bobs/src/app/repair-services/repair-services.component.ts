@@ -43,7 +43,6 @@ export class RepairServicesComponent implements OnInit {
 
   }
 
-
   onSubmit(formData){
     for(var key in formData) {
       if(formData[key] != null && formData[key] != ""){

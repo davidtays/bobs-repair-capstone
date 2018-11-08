@@ -9,6 +9,9 @@ router.get('/', home_controller.user_invoices);
 //Post request for registering a user
 router.post('/register', home_controller.user_register);
 
+//Post request for registering a user
+//router.post('/update-user', home_controller.user_update);
+
 //Get request for verifying user tokens
 router.get('/token', checkToken, home_controller.user_token);
 
@@ -20,6 +23,9 @@ router.get('/logout', home_controller.user_logout);
 
 // Load home page with  user invoices
 router.get('/home/:username', home_controller.user_invoices);
+
+//get all user invoices
+router.get('/home-invoices/', home_controller.get_all_invoices);
 
 //get all security questions available
 router.get('/security-questions', home_controller.all_questions);

@@ -13,7 +13,7 @@ exports.user_register = function(req, res){
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var currentDate = new Date();
   var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
-    var newUser = new User({
+    var newUser = new User({//probably need role array in user object
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     phoneNumber: req.body.phonenumber,
@@ -22,13 +22,12 @@ exports.user_register = function(req, res){
     password: hashedPassword,
     dateCreated: dateTime,
     dateModified: dateTime,
-    q1: "one",
-    q2: "two",
-    q3: "three",
-    a1: "four",
-    a2: "five",
-    a3: "six",
-    
+    q1: req.body.q1,
+    q2: req.body.q2,
+    q3: req.body.q3,
+    a1: req.body.a1,
+    a2: req.body.a2,
+    a3: req.body.a3,    
   });
   
   User.add(newUser, (err, user) => {
@@ -41,6 +40,9 @@ exports.user_register = function(req, res){
     res.status(200).send({auth:true, token:token});
   });
 };
+
+// Update user for registration or admin purposes
+//update-user
 
 // Verify token on GET
 exports.user_token = function(req, res) {
@@ -60,7 +62,6 @@ exports.user_login = function(req, res){
   User.getOne(req.body.username, function(err, user){
     if(err) return res.status(500).send('Error on server.');
     if(!user) return res.status(404).send('No user found');
-    localStorage.setItem('user', user);
     console.log(user.password + "=returned password");
     var hashedPassword = bcrypt.hashSync(user.password, 8);
     var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
@@ -71,7 +72,8 @@ exports.user_login = function(req, res){
     var token = jwt.sign({id: user._id}, config.web.secret, {
       expiresIn: 86400
     });
-    res.status(200).send({auth:true, token:token });
+    res.json(user);
+    //res.status(200).send({auth:true, token:token, user:user});
   })
 };
 
@@ -112,6 +114,15 @@ exports.total_invoices = function(req, res){
     console.log(total + "=total from total_invoices");
     res.json(total);
   });
+};
+
+exports.get_all_invoices = function(req,res){
+  Invoice.getAllInvoices("", function(err, invoices){
+    if(err) return res.status(500).send('Error on server.');
+    if(!invoices) return res.status(404).send('No invoices found');
+    console.log(invoices + "=returned invoices");
+    res.json(invoices);
+  }); 
 };
 
 //save an invoice
