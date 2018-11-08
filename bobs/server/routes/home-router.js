@@ -39,6 +39,7 @@ router.post('/save-invoice', home_controller.save_invoice);
 // Get all services available
 router.get( '/home-services', home_controller.all_services);
 
-
+// Get user by name for password reset
+router.get('/reset/:username', home_controller.get_user_by_name);
 
 module.exports = router;

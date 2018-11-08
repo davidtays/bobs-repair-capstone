@@ -156,14 +156,14 @@ exports.all_questions = function(req, res){
     res.json(questions);
   });
 }
-//not used!!!!!!!!!!!!!
+//get user by name for reset Password!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){
-  console.log(req.body.username + "=req.body.username");
-  User.getByName(req.body.username, function(err, user){
-    res.json(user)
-    if(err) return res.status(500).send('there was a problem finding the user');
-    if(!user.username) return res.status(404).send('No username found');
-    res.status(200);
+  console.log(req.params.username + "=req.body.username");
+  User.getOne(req.params.username, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user + "=returned user");
+    res.json(user);
   })
 };
 
