@@ -32,6 +32,7 @@ export class RegisterComponent {
       firstname: formData.firstName,
       lastname: formData.lastName,
       phonenumber: formData.phoneNumber,
+      address: formData.address,
       email: formData.email,
       username: formData.userName,
       password: formData.password
