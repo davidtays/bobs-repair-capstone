@@ -11,6 +11,7 @@ import {
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable, Observer, Subject } from 'rxjs';
 import { json } from 'd3';
+import { CheckboxControlValueAccessor } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,8 @@ export class LoggedInRouteGuardService implements CanActivate{
       console.log(user);
       var roles = user['roles'];
       return this.checkRole(roles);
+    }else if(route.routeConfig.path == "security-questions"){
+      return this.checkUser();
     }else{
       return this.checkLogin(localStorage.getItem('username'));
     }
@@ -49,6 +52,14 @@ export class LoggedInRouteGuardService implements CanActivate{
       return true;
     }else{
       return false;
+    }
+  }
+
+  public checkUser(): boolean {
+    if(localStorage.getItem('user') == 'test' || localStorage.getItem('user') == ""){
+      return false;
+    }else{
+      return true;
     }
   }
 }
