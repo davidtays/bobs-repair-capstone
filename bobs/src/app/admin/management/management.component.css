@@ -1,5 +1,8 @@
 mat-card { 
-    width: 50%; 
+    width: 65%; 
     margin: 20px auto 100px auto;
     text-align: center;
-  }
+}
+mat-grid-tile {
+    padding-top: auto !important;
+}

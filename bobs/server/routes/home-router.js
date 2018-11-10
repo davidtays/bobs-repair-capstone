@@ -9,8 +9,11 @@ router.get('/', home_controller.user_invoices);
 //Post request for registering a user
 router.post('/register', home_controller.user_register);
 
-//Put request for updating  a user
-router.put('/update-password', home_controller.update_user);
+//Put request for updating  a user password
+router.put('/update-password', home_controller.update_user_password);
+
+//Put request for updating a user
+router.put('/update-user', home_controller.update_user);
 
 //Get request for verifying user tokens
 router.get('/token', checkToken, home_controller.user_token);
@@ -41,5 +44,8 @@ router.get( '/home-services', home_controller.all_services);
 
 // Get user by name for password reset
 router.get('/reset/:username', home_controller.get_user_by_name);
+
+// Get all users
+router.get('/get-all-users', home_controller.get_all_users);
 
 module.exports = router;
