@@ -37,6 +37,7 @@
                   Phone number must be 10 digits.
                 </div>
               </div>
+              
           </mat-form-field>
         </div>
         <br>
@@ -67,7 +68,7 @@
 
         <div class="form-group">
           <mat-form-field>
-            <input type="text" id="username" matInput required name="username" class="form-control" placeholder="Register username" [(ngModel)]="credentials.username" #username="ngModel">
+            <input type="text" id="userName" matInput required name="userName" class="form-control" placeholder="Register username" [(ngModel)]="credentials.username" #username="ngModel">
               <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
                 <div *ngIf="username.errors.required">
                   Username is required.
@@ -79,7 +80,7 @@
 
         <div class="form-group">
           <mat-form-field>
-            <input type="mypassword" id="password" matInput required name="password" class="form-control" placeholder="Register password" [(ngModel)]="credentials.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
+            <input type="password" id="password" matInput required name="password" class="form-control" placeholder="Register password" [(ngModel)]="credentials.password" #password="ngModel" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$">
               <div *ngIf="password.invalid && password.touched" class="alert alert-danger">
                 <div *ngIf="password.errors.required">
                   Password must contain one uppercase letter and at least one number.

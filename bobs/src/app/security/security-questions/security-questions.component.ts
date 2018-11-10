@@ -18,6 +18,7 @@ export class SecurityQuestionsComponent implements OnInit {
     this.questions = this.http.get('/api/security-questions',  {});
     this.questionsChosen = [];
     this.answers = [];
+    console.log("inside of the constructor of security Questions");
     this.user = JSON.parse(localStorage.getItem('user'));
   }
 
@@ -38,7 +39,8 @@ export class SecurityQuestionsComponent implements OnInit {
       firstname: this.user['firstname'],
       lastname: this.user['lastname'],
       phonenumber: this.user['phonenumber'],
-      email: this.user['email'],
+      address: this.user['address'],
+      email: this.user['email'],      
       username: this.user['username'],
       password: this.user['password'],
       q1: this.questionsChosen[0],
@@ -47,6 +49,7 @@ export class SecurityQuestionsComponent implements OnInit {
       a1: this.answers[0],
       a2: this.answers[1],
       a3: this.answers[2],
+      roles: this.user['roles'],
     }).subscribe(res => {
       this.router.navigate(['/login'/*, res*/]), (err) => {console.log(err)}
     })

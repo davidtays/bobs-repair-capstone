@@ -32,9 +32,17 @@ export class ResetPasswordComponent implements OnInit, AfterViewChecked {
     
     if(formData.newPassword &&  formData.confirmPassword && formData.newPassword == formData.confirmPassword){
       console.log("They Match!! UPDATE THE USER!!!! CLEAR LOCALSTORAGE AND SEND TO LOGIN PAGE");
+      console.log(this.user);
+      this.user['password'] = this.newPassword;
+      console.log(this.user['password']);
+      this.http.put('/api/update-password', this.user)
+      .subscribe(res => {
+        //this.user = res; 
+        this.router.navigateByUrl('/login'), (err) => {console.log(err)}
+    });
       localStorage.setItem('user', 'test');
       localStorage.setItem('username', 'test');
-      this.router.navigateByUrl('/login');
+      //this.router.navigateByUrl('/login');
     }
     else{
       console.log("Your passwords don't match or an input was empty! CHECK THE FORM");
