@@ -4,3 +4,6 @@ mat-card {
     text-align: center;
     margin-top: 7%;
   }
+  p{
+    font-size: 12px;
+  }
