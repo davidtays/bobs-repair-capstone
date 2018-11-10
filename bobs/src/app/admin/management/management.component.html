@@ -1,3 +1,46 @@
-<p>
-  management works!
-</p>
+<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+  <mat-card>
+    <mat-card-content>
+      <h2>Edit User</h2>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile [style.margin]="'auto'">
+          <div>
+            <mat-form-field>
+              <input type="text" matInput name="firstName" ngModel placeholder="1this needs to be the value from the object per cursor">
+            </mat-form-field><br>
+            <mat-form-field>
+              <input type="text" matInput name="lastName" ngModel placeholder="2this needs to be the value from the object per cursor">
+            </mat-form-field><br>
+            <mat-form-field>
+              <input type="text" matInput name="phoneNumber" ngModel placeholder="3this needs to be the value from the object per cursor">
+            </mat-form-field>
+          </div> 
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <div>
+            <mat-form-field>
+              <input type="text" matInput name="address" ngModel placeholder="4this needs to be the value from the object per cursor">
+            </mat-form-field><br>
+            <mat-form-field>
+              <input type="text" matInput name="dateCreated" ngModel placeholder="5this needs to be the value from the object per cursor">
+            </mat-form-field><br>
+            <mat-form-field>
+              <input type="text" matInput name="dateModified" ngModel placeholder="6this needs to be the value from the object per cursor">
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+      
+      
+      <mat-card-actions>
+        <button type="submit" class="btn btn-default" >Edit User</button>
+
+        <button type="submit" class="btn btn-default" >Delete User</button>
+
+        <button type="submit" class="btn btn-default" >Next User</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</form>

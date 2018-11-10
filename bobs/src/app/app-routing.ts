@@ -22,18 +22,18 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes : Routes = [
     {path: '', component: LoginComponent},
-    {path: 'home', component: HomeComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
-    {path: 'manage', component: ManagementComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'manage', component: ManagementComponent/*, canActivate:[LoggedInRouteGuardService]*/},
     
     {path: 'register', component: RegisterComponent},
-    {path: 'change-questions', component: ChangeQuestionsComponent, canActivate:[LoggedInRouteGuardService]},
-    {path: 'security-questions', component: SecurityQuestionsComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'change-questions', component: ChangeQuestionsComponent/*, canActivate:[LoggedInRouteGuardService]*/},
+    {path: 'security-questions', component: SecurityQuestionsComponent/*, canActivate:[LoggedInRouteGuardService]*/},
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
-    {path: 'repair-services', component: RepairServicesComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'repair-services', component: RepairServicesComponent/*, canActivate:[LoggedInRouteGuardService]*/},
 
     //404
     {path: '**', component:NotFoundComponent}

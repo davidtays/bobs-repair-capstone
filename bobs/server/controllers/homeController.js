@@ -172,8 +172,8 @@ exports.get_user_by_name = function(req, res, next){
   })
 };
 
-//update user
-exports.update_user = function(req, res, next){
+//update user password
+exports.update_user_password = function(req, res, next){
   console.log(req.body.password + " password before");
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   req.body.password = hashedPassword;
@@ -186,6 +186,30 @@ exports.update_user = function(req, res, next){
     res.json(user);
   })
 }
+
+exports.update_user = function(req, res, next){
+  console.log(req.body.password + " password before");
+  
+  console.log(req.body.password + " password after");
+  User.updateUserById(req.body, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user);
+    console.log("=returned user from update_user")
+    res.json(user);
+  })
+}
+
+//get all user documents
+exports.get_all_users = function(req,res){
+  console.log("inside of get_all_users");
+  User.getAll("", function(err, users){
+    if(err) return res.status(500).send('Error on server.');
+    if(!users) return res.status(404).send('No users found');
+    console.log(users + "=returned users");
+    res.json(users);
+  }); 
+};
 
 exports.index = function(req, res, next) {
   res.json("Home Controller works!")

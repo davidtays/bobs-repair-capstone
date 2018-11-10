@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import { LoggedInRouteGuardService } from './services/logged-in-route-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { MatGridListModule} from '@angular/material/grid-list';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
@@ -79,7 +80,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     HttpModule,
-    
+    MatGridListModule,
   ],
   providers: [LoggedInRouteGuardService,
               AuthenticationService,
