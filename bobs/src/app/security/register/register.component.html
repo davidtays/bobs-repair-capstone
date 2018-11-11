@@ -82,11 +82,11 @@
 
         <div class="form-group">
           <mat-form-field>
-            <input type="text" id="username" matInput required name="username" class="form-control" placeholder="Register username" [(ngModel)]="credentials.username" #username="ngModel">
+            <input type="text" id="userName" matInput required name="userName" class="form-control" placeholder="Register username" [(ngModel)]="credentials.userName" #userName="ngModel">
 
             <mat-hint>
-              <div *ngIf="username.invalid && username.touched" class="alert alert-danger">
-                <div *ngIf="username.errors.required" style="color:red">
+              <div *ngIf="userName.invalid && userName.touched" class="alert alert-danger">
+                <div *ngIf="userName.errors.required" style="color:red">
                   Username is required.
                 </div>
               </div>
@@ -108,6 +108,22 @@
           </mat-form-field>
         </div>
         <br>
+<!-- this needs to be changed because if they type in any value, they can submit and we don't want that
+        <div class="form-group">
+          <mat-form-field>
+            <input type="password" id="confirmPassword" matInput name="confirmPassword" required
+            class="form-control" placeholder="Confirm password" [(ngModel)]="credentials.confirmPassword" #confirmPassword="ngModel" value="password">
+
+              <mat-hint> 
+                <div *ngIf="confirmPassword.value === password.value" class="alert alert-danger" style="color:green">Passwords match!
+                </div>
+              </mat-hint>
+
+          </mat-form-field>
+        </div>
+        <br>
+
+      -->
 
 
 

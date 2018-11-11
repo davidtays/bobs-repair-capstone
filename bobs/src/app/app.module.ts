@@ -32,6 +32,7 @@ import { ContactComponent } from './contact/contact.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { RepairServicesComponent } from './repair-services/repair-services.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 // import { ServerIssueComponent } from './server-issue/server-issue.component';
 
 
@@ -57,6 +58,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactComponent,
     RepairServicesComponent,
     NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,

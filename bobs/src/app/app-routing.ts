@@ -34,6 +34,10 @@ const routes : Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'repair-services', component: RepairServicesComponent, canActivate:[LoggedInRouteGuardService]},
+    //{path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
+
+
+
 
     //404
     {path: '**', component:NotFoundComponent}
