@@ -22,7 +22,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes : Routes = [
     {path: '', component: LoginComponent},
-    {path: 'home', component: HomeComponent, canActivate:[LoggedInRouteGuardService]},
+    //{path: 'home', component: HomeComponent, canActivate:[LoggedInRouteGuardService]},
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
@@ -34,7 +34,7 @@ const routes : Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'repair-services', component: RepairServicesComponent, canActivate:[LoggedInRouteGuardService]},
-    //{path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
+    {path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
 
 
 
