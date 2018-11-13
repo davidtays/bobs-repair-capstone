@@ -144,7 +144,6 @@ exports.save_invoice = function(req, res){
     console.log(invoice.username + "=invoice.username");
     if(err) return res.status(500).send('There was  problem saving the invoice.');
     res.json(invoice);
-    //res.status(200).send({auth:true, token:token});
   });
 }
 
@@ -187,6 +186,7 @@ exports.update_user_password = function(req, res, next){
   })
 }
 
+//update a user
 exports.update_user = function(req, res, next){
   console.log(req.body.password + " password before");
   
@@ -200,10 +200,24 @@ exports.update_user = function(req, res, next){
   })
 }
 
+//delete a user
+exports.delete_user = function(req, res, next){
+  console.log(" =req.params.id from homeController/delete_user")
+  console.log(req.params.id);
+  
+  User.deleteUserById(req.params.id, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user);
+    console.log("=returned user from update_user")
+    res.json(user);
+  })
+}
+
 //get all user documents
 exports.get_all_users = function(req,res){
   console.log("inside of get_all_users");
-  User.getAll("", function(err, users){
+  User.getAll("all", function(err, users){
     if(err) return res.status(500).send('Error on server.');
     if(!users) return res.status(404).send('No users found');
     console.log(users + "=returned users");

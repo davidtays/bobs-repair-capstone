@@ -1,46 +1,67 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-  <mat-card>
-    <mat-card-content>
-      <h2>Edit User</h2>
-      <mat-grid-list cols="2" rowHeight="2:1">
-        <mat-grid-tile [style.margin]="'auto'">
-          <div>
-            <mat-form-field>
-              <input type="text" matInput name="firstName" ngModel placeholder="1this needs to be the value from the object per cursor">
-            </mat-form-field><br>
-            <mat-form-field>
-              <input type="text" matInput name="lastName" ngModel placeholder="2this needs to be the value from the object per cursor">
-            </mat-form-field><br>
-            <mat-form-field>
-              <input type="text" matInput name="phoneNumber" ngModel placeholder="3this needs to be the value from the object per cursor">
-            </mat-form-field>
-          </div> 
-        </mat-grid-tile>
-        
-        <mat-grid-tile>
-          <div>
-            <mat-form-field>
-              <input type="text" matInput name="address" ngModel placeholder="4this needs to be the value from the object per cursor">
-            </mat-form-field><br>
-            <mat-form-field>
-              <input type="text" matInput name="dateCreated" ngModel placeholder="5this needs to be the value from the object per cursor">
-            </mat-form-field><br>
-            <mat-form-field>
-              <input type="text" matInput name="dateModified" ngModel placeholder="6this needs to be the value from the object per cursor">
-            </mat-form-field>
-          </div>
-        </mat-grid-tile>
-        
-      </mat-grid-list>
-      
-      
-      <mat-card-actions>
-        <button type="submit" class="btn btn-default" >Edit User</button>
+<div *ngIf="users | async; let users; else loading">
+<div *ngIf="!displayIt">
+    <button type="submit" class="btn btn-default" (click)="toggleEdits()">Edit User</button>
+</div>
 
-        <button type="submit" class="btn btn-default" >Delete User</button>
+<div   *ngIf="displayIt">
+    <div class="example-container mat-elevation-z8"> 
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
+      
+    <h2>Edit Users</h2>
+        <mat-card-content>
+          <mat-table [dataSource]="users" matSort>
+              
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> FirstName </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.firstName}}" name="f/{{i+1}}" value="element.firstName" [(ngModel)]="element.firstName"></td>
+            </ng-container>
+        
+            <ng-container matColumnDef="lastName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> LastName </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.lastName}}" name="l/{{i+1}}" value="element.lastName" [(ngModel)]="element.lastName"></td>
+            </ng-container>
+        
+            <ng-container matColumnDef="address">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.address}}" name="a/{{i+1}}" value="element.address" [(ngModel)]="element.address"></td>
+            </ng-container>
+        
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.email}}" name="e/{{i+1}}" value="element.email" [(ngModel)]="element.email"></td>
+            </ng-container>
 
-        <button type="submit" class="btn btn-default" >Next User</button>
-      </mat-card-actions>
-    </mat-card-content>
-  </mat-card>
-</form>
+            <ng-container matColumnDef="phoneNumber">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> PhoneNumber </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.phoneNumber}}" name="p/{{i+1}}" value="element.phoneNumber" [(ngModel)]="element.phoneNumber"></td>
+            </ng-container>
+
+            <ng-container matColumnDef="roles">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Roles </th>
+              <td mat-cell *matCellDef="let element; let i = index"><input type="text" matInput placeholder="{{element.roles}}" name="r/{{i+1}}" value="element.roles" [(ngModel)]="element.roles"></td>
+            </ng-container>
+
+            <ng-container matColumnDef="buttons">
+              <th mat-header-cell *matHeaderCellDef> Buttons </th>
+              <td mat-cell *matCellDef="let element; let i = index">
+                <button type="button" class="btn btn-default" (click)="editUser(element)">Edit User</button>
+                <button type="button" class="btn btn-default" (click)="deleteUser(element)">Delete User</button>
+              </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+          </mat-table>
+        
+        </mat-card-content>  
+  </form>
+ </div>
+</div>
+</div>
+
+
+<ng-template #loading>Loading Service Data...</ng-template>
+<!-- for the table -->
+<!-- Copyright 2018 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

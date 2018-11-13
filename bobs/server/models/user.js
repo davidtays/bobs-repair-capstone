@@ -137,3 +137,9 @@ module.exports.updateUserById = (user, callback) => {
     }, callback);
 }
 
+//delete a user
+module.exports.deleteUserById = (id, callback) => {
+    console.log(id + "=id from delete in model/user");
+    var query = {_id: id};
+    User.deleteOne(query, callback);
+}

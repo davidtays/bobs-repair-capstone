@@ -1,6 +1,7 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+//import { MatPaginator } from '@angular/material'
 import { Observable, Subscription, of } from 'rxjs';
 
 @Component({
@@ -8,35 +9,53 @@ import { Observable, Subscription, of } from 'rxjs';
   templateUrl: './management.component.html',
   styleUrls: ['./management.component.css']
 })
-export class ManagementComponent implements OnInit, AfterViewChecked {
+export class ManagementComponent implements OnInit, AfterViewInit {
 
-  users: any;
+  users: Observable<{}>;
+  usersArray: any[];
+
+  usersLength: any;
   user: any;
   roles: String[];
   cursor: number;
-  displayIt: boolean;
+  displayIt: Boolean;
+  displayedColumns: String[];
+
+  dataSource: any;
+  ngOnInit() {}
+  ngAfterViewInit(){}
   constructor(private http: HttpClient, private router: Router) {
-    //this.users = this.http.get('/api/get-all-users',  {});
-    this.http.get('/api/get-all-users',{}).subscribe(res => { this.users = res;console.log(res), (err) => {console.log(err)}});
+    this.users = this.http.get('/api/get-all-users',  {});
     console.log("inside the management constructor");
-    console.log(this.user);
-    this.displayIt = false;
-  }
-
-  ngAfterViewChecked(){
-
-  }
-  ngOnInit() {
     this.cursor = 0;
+    this.displayIt = false;
+    this.usersLength = 0;
+    this.displayedColumns = ["firstName", "lastName", "address", "email", "phoneNumber", "roles", "buttons"];
+  }
+
+  onRowClicked(row){
+    console.log('Row clicked: ', row);
   }
 
   toggleEdits(){
     this.displayIt = true;
+    //this.usersLength = this.users.    
   }
-  
-  changeUser(){
-    this.cursor += 1;
-
+  deleteUser(element){
+    console.log(element._id);
+    this.http.delete("/api/delete-user/" + element._id)
+    .subscribe(res => {
+      console.log(res), (err) => {console.log(err)}
+    });
+  }
+  editUser(element){
+    
+    console.log(element);//of row
+    this.http.put("/api/update-user", element)
+    .subscribe(res => {
+      //this.user = res; 
+      console.log(res), (err) => {console.log(err)}
+  });
   }
 
   onSubmit(formData){

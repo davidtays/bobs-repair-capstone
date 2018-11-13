@@ -26,7 +26,7 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
-    {path: 'manage', component: ManagementComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'manage', component: ManagementComponent/*, canActivate:[LoggedInRouteGuardService]*/},
     
     {path: 'register', component: RegisterComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent, canActivate:[LoggedInRouteGuardService]},

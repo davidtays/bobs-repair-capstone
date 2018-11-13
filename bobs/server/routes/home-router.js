@@ -15,6 +15,9 @@ router.put('/update-password', home_controller.update_user_password);
 //Put request for updating a user
 router.put('/update-user', home_controller.update_user);
 
+//Delete request for deleting a user
+router.delete('/delete-user/:id', home_controller.delete_user);
+
 //Get request for verifying user tokens
 router.get('/token', checkToken, home_controller.user_token);
 

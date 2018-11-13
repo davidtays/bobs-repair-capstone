@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule} from './app-routing';
 import {RouterModule, Routes} from '@angular/router';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, MatTableModule, MatRadioGroup, MatRadioButton, MatRippleModule } from "@angular/material";
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, MatTableModule, MatRadioGroup, MatRadioButton, MatRippleModule, MatPaginatorModule, MatSortModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
@@ -35,10 +35,6 @@ import { NotFoundComponent } from './not-found/not-found.component';
 // import { ServerIssueComponent } from './server-issue/server-issue.component';
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +61,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatCardModule,
     MatMenuModule,
     MatCheckboxModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
     MatRippleModule,
     MatButtonToggleModule,
     MatOptionModule,
