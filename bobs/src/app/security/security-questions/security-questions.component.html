@@ -1,19 +1,19 @@
 <div *ngIf="questions | async; let questions; else loading">
-  <mat-card>
-    <mat-card-content>
-        <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
-            <div *ngFor="let question of questions; let i = index">
-              <mat-form-field>
-              
-                <input matInput name="{{question.question}}" placeholder="{{question.question}}" ngModel>
+    <mat-card>
+      <mat-card-content>
+          <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
+              <div *ngFor="let question of questions; let i = index">
+                <mat-form-field>
                 
-              </mat-form-field>
-            </div>
-            <div>
-                <button mat-raised-button type="submit">Submit Answers</button>
+                  <input matInput name="{{question.question}}" placeholder="{{question.question}}" ngModel>
+                  
+                </mat-form-field>
               </div>
-          </form>
-    </mat-card-content>
-  </mat-card>
-</div>
-<ng-template #loading>Loading Question Data...</ng-template>
+              <div>
+                  <button mat-raised-button type="submit">Submit Answers</button>
+                </div>
+            </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <ng-template #loading>Loading Question Data...</ng-template>
