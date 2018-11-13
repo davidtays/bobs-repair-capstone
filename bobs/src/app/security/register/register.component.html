@@ -115,7 +115,7 @@
             class="form-control" placeholder="Confirm password" [(ngModel)]="credentials.confirmPassword" #confirmPassword="ngModel" value="password">
 
               <mat-hint> 
-                <div *ngIf="confirmPassword.value === password.value" class="alert alert-danger" style="color:green">Passwords match!
+                <div *ngIf="(confirmPassword.dirty || confirmPassword.touched) && confirmPassword.value != password.value" class="alert alert-danger" style="color:red">Passwords Don't match!
                 </div>
               </mat-hint>
 

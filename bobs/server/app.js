@@ -8,6 +8,9 @@ const logger = require('./helpers/logger');
 const mongoose = require('mongoose');
 const config = require('./helpers/config');
 const homeRouter = require('./routes/home-router');
+//for logs
+const fs = require('fs');
+const rfs = require('rotating-file-stream');
 mongoose.Promise = require('bluebird');
 
 //added these, fix these?
@@ -41,6 +44,17 @@ mongoose.connect('mongodb://' + config.database.username + ':'
  */
 let app = express();
 
+
+//logger
+//logs stuff
+let logDirectory = path.join(__dirname, '../log');
+console.log(__dirname);
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+let accessLogStream = rfs('access.log', {
+  interval: '1d',
+  path: logDirectory
+});
 /**
  * App: Setup
  */
@@ -48,7 +62,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false'}));
 app.use(express.static(path.join(__dirname, '../dist/bobs')));//***************** nodequiz??? */
 app.use('/', express.static(path.join(__dirname, '../dist/bobs')));//***************** nodequiz??? */
-app.use(morgan('dev'));
+app.use(morgan('combined', {stream: accessLogStream}));
 
 app.use('/api', homeRouter); // wires the homeController to localhost:3000/api
 
@@ -67,6 +81,7 @@ app.use(function (err, req, res, next) {
 
   res.sendStatus(err.status);
 });
+
 
 
 /*
