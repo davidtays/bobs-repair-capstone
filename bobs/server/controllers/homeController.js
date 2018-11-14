@@ -6,17 +6,20 @@ var Question = require('../models/question');
 var Role = require('../models/role');
 var Service = require('../models/service');
 var Invoice = require('../models/invoice');
+var path = require('path');
 
 
 //Register a new user on POST
 exports.user_register = function(req, res){
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
   var currentDate = new Date();
+  console.log(req.body.username + "=req.body.username from user_register")
   var dateTime = currentDate.getMonth() + "/" + currentDate.getDate() + "/" + currentDate.getFullYear() + " @" + currentDate.getHours() + ":" + currentDate.getMinutes();
-    var newUser = new User({//probably need role array in user object
+    var newUser = new User({
     firstName: req.body.firstname,
     lastName: req.body.lastname,
     phoneNumber: req.body.phonenumber,
+    address: req.body.address,
     email: req.body.email,
     userName: req.body.username,
     password: hashedPassword,
@@ -27,11 +30,12 @@ exports.user_register = function(req, res){
     q3: req.body.q3,
     a1: req.body.a1,
     a2: req.body.a2,
-    a3: req.body.a3,    
+    a3: req.body.a3,
+    roles: req.body.roles    
   });
-  
+  //console.log(newUser + " = newUser from register");
   User.add(newUser, (err, user) => {
-    console.log(user.email + "=user.email");
+    console.log(user + "=user");
     if(err) return res.status(500).send('There was  problem registering the user.');
 
     var token = jwt.sign({id:user._id}, config.web.secret, {
@@ -116,6 +120,16 @@ exports.total_invoices = function(req, res){
   });
 };
 
+//get all invoice documents
+exports.get_all_invoices = function(req,res){
+  Invoice.getAllInvoices("", function(err, invoices){
+    if(err) return res.status(500).send('Error on server.');
+    if(!invoices) return res.status(404).send('No invoices found');
+    console.log(invoices + "=returned invoices");
+    res.json(invoices);
+  }); 
+};
+
 //save an invoice
 exports.save_invoice = function(req, res){
   var currentDate = new Date();
@@ -131,7 +145,6 @@ exports.save_invoice = function(req, res){
     console.log(invoice.username + "=invoice.username");
     if(err) return res.status(500).send('There was  problem saving the invoice.');
     res.json(invoice);
-    //res.status(200).send({auth:true, token:token});
   });
 }
 
@@ -147,18 +160,76 @@ exports.all_questions = function(req, res){
     res.json(questions);
   });
 }
-//not used!!!!!!!!!!!!!
+
+//get user by name for reset Password!!!!!!!!!!!!!
 exports.get_user_by_name = function(req, res, next){
-  console.log(req.body.username + "=req.body.username");
-  User.getByName(req.body.username, function(err, user){
-    res.json(user)
-    if(err) return res.status(500).send('there was a problem finding the user');
-    if(!user.username) return res.status(404).send('No username found');
-    res.status(200);
+  console.log(req.params.username + "=req.body.username");
+  User.getOne(req.params.username, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user + "=returned user");
+    res.json(user);
   })
 };
 
+//update user password
+exports.update_user_password = function(req, res, next){
+  console.log(req.body.password + " password before");
+  var hashedPassword = bcrypt.hashSync(req.body.password, 8);
+  req.body.password = hashedPassword;
+  console.log(req.body.password + " password after");
+  User.updatePasswordById(req.body, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user);
+    console.log("=returned user from update_user")
+    res.json(user);
+  })
+}
 
+//update a user
+exports.update_user = function(req, res, next){
+  console.log(req.body.password + " password before");
+  
+  console.log(req.body.password + " password after");
+  User.updateUserById(req.body, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user);
+    console.log("=returned user from update_user")
+    res.json(user);
+  })
+}
+
+//delete a user
+exports.delete_user = function(req, res, next){
+  console.log(" =req.params.id from homeController/delete_user")
+  console.log(req.params.id);
+  
+  User.deleteUserById(req.params.id, function(err, user){
+    if(err) return res.status(500).send('Error on server.');
+    if(!user) return res.status(404).send('No user found');
+    console.log(user);
+    console.log("=returned user from update_user")
+    res.json(user);
+  })
+}
+
+//get all user documents
+exports.get_all_users = function(req,res){
+  console.log("inside of get_all_users");
+  User.getAll("all", function(err, users){
+    if(err) return res.status(500).send('Error on server.');
+    if(!users) return res.status(404).send('No users found');
+    console.log(users + "=returned users");
+    res.json(users);
+  }); 
+};
+
+//get logs
+exports.getLog = function(req, res) {
+  res.sendFile('access.log', { root: path.join(__dirname, '../../log')});
+}
 
 exports.index = function(req, res, next) {
   res.json("Home Controller works!")

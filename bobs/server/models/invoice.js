@@ -35,6 +35,11 @@ module.exports.getInvoiceSum = (username, callback) => {
     Invoice.aggregate([{ $group: { _id: {$productTotal: ""}, total: { $sum: "$total"}}}], callback);
 }
 
+module.exports.getAllInvoices = (thisName, callback) => {
+    console.log(thisName + '=thisName from the invoice model-getAllInvoices');
+    Invoice.find(callback);
+}
+
 module.exports.add = (invoice,callback) => {
     invoice.save(callback);
 }

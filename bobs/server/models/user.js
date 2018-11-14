@@ -28,6 +28,7 @@ var userSchema = new mongoose.Schema({
     firstName:String,
     lastName:String,
     phoneNumber:String,
+    address:String,
     email:String,
     userName:String,
     password:String,
@@ -38,7 +39,8 @@ var userSchema = new mongoose.Schema({
     q3:String,
     a1:String,
     a2:String,
-    a3:String
+    a3:String,
+    roles:[]
 }, {
     collection: 'users',
 });
@@ -83,6 +85,7 @@ module.exports.getByName = (thisName, callback) => {
 
 //add a user
 module.exports.add = (user,callback) => {
+    console.log(user + "inside of add for save/register user");
     user.save(callback);
 }
 
@@ -96,4 +99,47 @@ module.exports.getById = (id, callback) => {
 module.exports.getOne = (e, callback) => {
     var query = {userName: e};
     User.findOne(query,callback);
+}
+
+//get all users
+module.exports.getAll = (e, callback) => {
+    User.find(callback);
+}
+
+//update a user password
+module.exports.updatePasswordById = (user, callback) => {
+    console.log(user.password + " =id from update in model/user");
+    var query = {_id: user._id};
+    User.updateOne(query, {password: user.password}, callback);
+}
+
+//update a user 
+module.exports.updateUserById = (user, callback) => {
+    console.log(user.password + " =id from update in model/user");
+    var query = {_id: user._id};
+    User.updateOne(query, {
+        firstName:user.firstName,
+        lastName: user.lastName,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        email: user.email,
+        userName: user.userName,
+        password: user.password,
+        dateCreated: user.dateCreated,
+        dateModified: user.dateModified,
+        q1: user.q1,
+        q2: user.q2,
+        q3: user.q3,
+        a1: user.a1,
+        a2: user.a2,
+        a3: user.a3,
+        roles: user.roles
+    }, callback);
+}
+
+//delete a user
+module.exports.deleteUserById = (id, callback) => {
+    console.log(id + "=id from delete in model/user");
+    var query = {_id: id};
+    User.deleteOne(query, callback);
 }

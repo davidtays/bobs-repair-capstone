@@ -4,13 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule} from './app-routing';
 import {RouterModule, Routes} from '@angular/router';
-import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, MatTableModule, MatRadioGroup, MatRadioButton, MatRippleModule } from "@angular/material";
+import { MatButtonModule, MatIconModule, MatMenuModule, MatToolbarModule, MatCardModule, MatFormFieldModule, MatInputModule, MatCheckboxModule, MatButtonToggleModule, MatOptionModule, MatSelectModule, MatTableModule, MatRadioGroup, MatRadioButton, MatRippleModule, MatPaginatorModule, MatSortModule } from "@angular/material";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
 import { LoggedInRouteGuardService } from './services/logged-in-route-guard.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { MatGridListModule} from '@angular/material/grid-list';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './security/login/login.component';
@@ -31,11 +32,9 @@ import { ContactComponent } from './contact/contact.component';
 import { SecurityQuestionsComponent } from './security/security-questions/security-questions.component';
 import { RepairServicesComponent } from './repair-services/repair-services.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { RouteLogsComponent } from './route-logs/route-logs.component';
+
 // import { ServerIssueComponent } from './server-issue/server-issue.component';
-
-
-
-
 
 
 @NgModule({
@@ -56,6 +55,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     ContactComponent,
     RepairServicesComponent,
     NotFoundComponent,
+    RouteLogsComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -64,6 +65,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
     MatCardModule,
     MatMenuModule,
     MatCheckboxModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
     MatRippleModule,
     MatButtonToggleModule,
     MatOptionModule,
@@ -79,7 +83,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     AppRoutingModule,
     HttpClientModule,
     HttpModule,
-    
+    MatGridListModule,
   ],
   providers: [LoggedInRouteGuardService,
               AuthenticationService,

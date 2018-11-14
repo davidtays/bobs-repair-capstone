@@ -32,9 +32,11 @@ export class RegisterComponent {
       firstname: formData.firstName,
       lastname: formData.lastName,
       phonenumber: formData.phoneNumber,
+      address: formData.address,
       email: formData.email,
       username: formData.userName,
-      password: formData.password
+      password: formData.password,
+      roles:['standard']
     }
     localStorage.setItem('user', JSON.stringify(this.user));
     /*this.http.post('/api/register', {
