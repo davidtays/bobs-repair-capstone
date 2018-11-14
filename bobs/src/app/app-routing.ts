@@ -15,6 +15,7 @@ import { SecurityQuestionsComponent } from './security/security-questions/securi
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { RepairServicesComponent } from './repair-services/repair-services.component';
+import { RouteLogsComponent } from './route-logs/route-logs.component';
 import { LoggedInRouteGuardService } from './services/logged-in-route-guard.service';
 // http codes
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -35,9 +36,7 @@ const routes : Routes = [
     {path: 'contact', component: ContactComponent},
     {path: 'repair-services', component: RepairServicesComponent, canActivate:[LoggedInRouteGuardService]},
     {path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
-
-
-
+    {path: 'logs', component: RouteLogsComponent/*, canActivate:[LoggedInRouteGuardService]*/},
 
     //404
     {path: '**', component:NotFoundComponent}

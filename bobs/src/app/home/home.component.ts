@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   services: any = [];
   displayIt: boolean;
   data: Object[];
+  preData: Object[];
   
   name: any;// = localStorage.setItem("username", "davetays");
   constructor(private http: HttpClient, private router: Router) {
@@ -39,21 +40,53 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       //this.services = this.http.get('/api/home-services/', {});
       this.http.get('/api/home-services/',{}).subscribe(res => { this.services = res; console.log(res), (err) => {console.log(err)}});
       this.displayIt = false;
-      this.data = [{name: "A", cost: 80}, {name: "B", cost: 120}, {name: "C", cost: 60}, {name: "D", cost: 150},{name: "E", cost: 200}];
+      this.data = [];
+      this.preData = [];
   }
   getPrices(){
-  
-    for(let i = 0; i < this.services.length; i++){
-      console.log(this.services[i].name);
-      console.log(this.services[i].cost);
-    }
-    for(let x = 0; x < this.allInvoices.length - 4; x++){
-      console.log(this.allInvoices[x]);
+    let cost = 0;
+    
+    
+    for(let x = 0; x < this.allInvoices.length; x++){
+      console.log("the services from this invoice: " + this.allInvoices[x].services);
       for(let i = 0; i < this.allInvoices[x].services.length; i++){
-        console.log(this.allInvoices[x].services[i]);
+        //console.log(this.allInvoices[x].services[i]);
+        for(let j = 0; j < this.services.length; j++){
+          //console.log("looking for: " + this.services[i].name);
+          if(this.allInvoices[x].services[i] == this.services[j].name){
+            console.log("{name: " + this.allInvoices[x].services[i] + "cost: " + this.services[j].cost + "}");
+            this.preData.push({name: this.allInvoices[x].services[i], cost: this.services[j].cost});
+          }
+        }
       }
     }
-    
+    console.log(this.preData);
+    console.log('!!!!!!!!!!!!');
+    let found = false;
+    this.preData.forEach(function(item){
+      found = false;
+      console.log(item);
+      console.log("item above");
+      if(this.data.length != 0){
+        this.data.forEach(element => {
+          if(item['name'] == element['name']){
+            element['cost'] += item['cost'];
+            found = true;
+          }else{
+            console.log();
+          }
+        });
+        console.log(item['name']);
+      }
+      else{
+        this.data.push(item);
+        found = true;
+      }
+      if(!found){
+        this.data.push(item);
+      }
+    }, this)
+    console.log(this.data);
   }
 
   toggleChart(){
@@ -65,7 +98,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   buildChart2(){
     
     const margin = 60;
-    const width = 600 - 2 * margin;
+    const width = 800 - 2 * margin;
     const height = 400 - 2 * margin;
     //console.log(this.data[0]['cost'] + "=data");//prints 80
     const svg = d3.select('svg');

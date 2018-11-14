@@ -6,6 +6,7 @@ var Question = require('../models/question');
 var Role = require('../models/role');
 var Service = require('../models/service');
 var Invoice = require('../models/invoice');
+var path = require('path');
 
 
 //Register a new user on POST
@@ -224,6 +225,11 @@ exports.get_all_users = function(req,res){
     res.json(users);
   }); 
 };
+
+//get logs
+exports.getLog = function(req, res) {
+  res.sendFile('access.log', { root: path.join(__dirname, '../../log')});
+}
 
 exports.index = function(req, res, next) {
   res.json("Home Controller works!")

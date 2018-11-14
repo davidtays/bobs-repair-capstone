@@ -4,6 +4,10 @@ const router = express.Router();
 
 let home_controller = require('../controllers/homeController');
 
+//get logs
+router.get('/logs', home_controller.getLog);
+
+//get invoices of current user
 router.get('/', home_controller.user_invoices);
 
 //Post request for registering a user
