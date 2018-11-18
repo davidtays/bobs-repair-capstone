@@ -45,8 +45,6 @@ exports.user_register = function(req, res){
   });
 };
 
-// Update user for registration or admin purposes
-//update-user
 
 // Verify token on GET
 exports.user_token = function(req, res) {
@@ -148,16 +146,67 @@ exports.save_invoice = function(req, res){
   });
 }
 
-//get all security-questions
-exports.all_questions = function(req, res){
+//get all security-questions of user
+exports.all_user_questions = function(req, res){
   console.log("inside the controller for seccurity questions");
-  Question.getAllQuestions("all", function(err, questions){
+  Question.getAllUserQuestions("all", function(err, questions){
 
     if(err) return res.status(500).send('Error on server.');
     if(!questions) return res.status(404).send('No questions found');
     
     console.log(questions + "=returned questions");
     res.json(questions);
+  });
+}
+
+//get ALL security-questions
+exports.all_questions = function(req,res){
+  console.log("inside of all_questions");
+  Question.getAllQuestions("all", function(err, questions){
+    if(err) return res.status(500).send('Error on server.');
+    if(!questions) return res.status(404).send('No Questions found');
+    console.log(questions + "=returned Questions");
+    res.json(questions);
+  }); 
+};
+
+//update a question
+exports.update_question = function(req, res, next){
+  console.log(req.body + " question before");
+  Question.update(req.body, function(err, question){
+    if(err) return res.status(500).send('Error on server.');
+    if(!question) return res.status(404).send('No question found');
+    console.log(question);
+    console.log("=returned question from update_question")
+    res.json(question);
+  })
+}
+
+//delete a question
+exports.delete_question = function(req, res, next){
+  console.log(" =req.params.id from homeController/delete_question")
+  console.log(req.params.id);
+  
+  Question.delete(req.params.id, function(err, question){
+    if(err) return res.status(500).send('Error on server.');
+    if(!question) return res.status(404).send('No question found');
+    console.log(question);
+    console.log("=returned question from update_question")
+    res.json(question);
+  })
+}
+
+//add a question
+exports.add_question = function(req, res, next){
+  console.log(req.body);
+  var newQuestion = new Question({
+    question: req.body.question
+  })
+  Question.add(newQuestion, (err, question) => {
+    console.log(question + "=question");
+    if(err) return res.status(500).send('There was  problem adding the question.');
+
+    res.json(question);
   });
 }
 

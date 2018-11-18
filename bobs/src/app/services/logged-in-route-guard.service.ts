@@ -27,11 +27,16 @@ export class LoggedInRouteGuardService implements CanActivate{
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
     console.log(route.routeConfig.path);
     console.log(localStorage.getItem('username'));
-    if(route.routeConfig.path == "manage"){
-      var user = JSON.parse(localStorage.getItem('user'));
-      console.log(user);
-      var roles = user['roles'];
-      return this.checkRole(roles);
+    if(route.routeConfig.path == "manage" || route.routeConfig.path == "logs" || route.routeConfig.path == "change-questions" ){
+      if(localStorage.getItem('user') != 'test'){
+        var user = JSON.parse(localStorage.getItem('user'));
+        console.log(user);
+        var roles = user['roles'];
+        return this.checkRole(roles);
+      }else{
+        return false;
+      }
+
     }else if(route.routeConfig.path == "security-questions"){
       return this.checkUser();
     }else{

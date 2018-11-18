@@ -108,7 +108,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     
     const yScale = d3.scaleLinear()
     .range([height, 0])
-    .domain([0, 500]);
+    .domain([0, 5000]);
 
     const makeYLines = () => d3.axisLeft(yScale)
       .scale(yScale)
@@ -137,6 +137,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
       .attr('y', (g) => yScale(g['cost']))
       .attr('height', (g) => height - yScale(g['cost']))
       .attr('width', xScale.bandwidth())
+      .attr('fill', 'red')
       .on('mouseenter', function (actual, i) {
         d3.selectAll('.value')
           .attr('opacity', 0)
@@ -150,50 +151,44 @@ export class HomeComponent implements OnInit, AfterViewChecked {
 
         const y = yScale(actual['cost'])
 
-        var line = chart.append('line')
-          .attr('id', 'limit')
-          .attr('x1', 0)
-          .attr('y1', y)
-          .attr('x2', width)
-          .attr('y2', y)
 
-    barGroups 
-      .append('text')
-      .attr('class', 'value')
-      .attr('x', (a) => xScale(a['name']) + xScale.bandwidth() / 2)
-      .attr('y', (a) => yScale(a['cost']) + 30)
-      .attr('text-anchor', 'middle')
-      .text((a) => `${a['name']}`)
-    
-    svg
-      .append('text')
-      .attr('class', 'label')
-      .attr('x', -(height / 2) - margin)
-      .attr('y', margin / 2.4)
-      .attr('transform', 'rotate(-90)')
-      .attr('text-anchor', 'middle')
-      .text('Amount Sold')
+        barGroups 
+          .append('text')
+          .attr('class', 'value')
+          .attr('x', (a) => xScale(a['name']) + xScale.bandwidth() / 2)
+          .attr('y', (a) => yScale(a['cost']) + -30)
+          .attr('text-anchor', 'top')
+          .text((a) => `${a['cost'].toFixed(2)}`)
+        
+        svg
+          .append('text')
+          .attr('class', 'label')
+          .attr('x', -(height / 2) - margin)
+          .attr('y', margin / 2.4)
+          .attr('transform', 'rotate(-90)')
+          .attr('text-anchor', 'middle')
+          .text('Amount Sold')
 
-    svg.append('text')
-      .attr('class', 'label')
-      .attr('x', width / 2 + margin)
-      .attr('y', height + margin * 1.7)
-      .attr('text-anchor', 'middle')
-      .text('Products')
+        svg.append('text')
+          .attr('class', 'label')
+          .attr('x', width / 2 + margin)
+          .attr('y', height + margin * 1.7)
+          .attr('text-anchor', 'middle')
+          .text('Products')
 
-    svg.append('text')
-      .attr('class', 'title')
-      .attr('x', width / 2 + margin)
-      .attr('y', 40)
-      .attr('text-anchor', 'middle')
-      .text('Amount sold per service/product')
+        svg.append('text')
+          .attr('class', 'title')
+          .attr('x', width / 2 + margin)
+          .attr('y', 20)
+          .attr('text-anchor', 'middle')
+          .text('Amount sold per service/product')
 
-    svg.append('text')
-      .attr('class', 'source')
-      .attr('x', width - margin / 2)
-      .attr('y', height + margin * 1.7)
-      .attr('text-anchor', 'start')
-      .text('Source: Stack Overflow, 2018')
+        svg.append('text')
+          .attr('class', 'source')
+          .attr('x', width - margin / 2)
+          .attr('y', height + margin * 1.7)
+          .attr('text-anchor', 'start')
+          .text('Source: Stack Overflow, 2018')
 
     
   });

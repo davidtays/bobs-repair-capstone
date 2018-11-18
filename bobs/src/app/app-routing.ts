@@ -27,7 +27,7 @@ const routes : Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'forgot', component: ForgotPasswordComponent},
     {path: 'reset', component: ResetPasswordComponent},
-    {path: 'manage', component: ManagementComponent/*, canActivate:[LoggedInRouteGuardService]*/},
+    {path: 'manage', component: ManagementComponent, canActivate:[LoggedInRouteGuardService]},
     
     {path: 'register', component: RegisterComponent},
     {path: 'change-questions', component: ChangeQuestionsComponent, canActivate:[LoggedInRouteGuardService]},
@@ -35,8 +35,8 @@ const routes : Routes = [
     {path: 'about', component: AboutComponent},
     {path: 'contact', component: ContactComponent},
     {path: 'repair-services', component: RepairServicesComponent, canActivate:[LoggedInRouteGuardService]},
-    {path: 'home', component: HomeComponent/*, canActivate:[LoggedInRouteGuardService]*/},
-    {path: 'logs', component: RouteLogsComponent/*, canActivate:[LoggedInRouteGuardService]*/},
+    {path: 'home', component: HomeComponent, canActivate:[LoggedInRouteGuardService]},
+    {path: 'logs', component: RouteLogsComponent, canActivate:[LoggedInRouteGuardService]},
 
     //404
     {path: '**', component:NotFoundComponent}

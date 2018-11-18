@@ -1,3 +1,37 @@
-<p>
-  route-logs works!
-</p>
+
+
+  <button *ngIf="!displayIt" type="button" (click)="toggleEdits()">CheckLogs</button>
+  <div *ngIf="displayIt">
+    <mat-table [dataSource]="logsArray" class="logs-table">
+
+      <ng-container matColumnDef="address">
+        <th mat-header-cell fxFlex="400px" *matHeaderCellDef> Address </th>
+        <td mat-cell fxFlex="400px" *matCellDef="let element; let i = index"> {{element[0]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell fxFlex="400px" *matHeaderCellDef> Date </th>
+        <td mat-cell fxFlex="400px" *matCellDef="let element; let i = index"> {{element[1]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="MUSR">
+        <th mat-header-cell fxFlex="400px" *matHeaderCellDef> MUSR </th>
+        <td mat-cell fxFlex="400px" *matCellDef="let element; let i = index"> {{element[2]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="referrer">
+        <th mat-header-cell fxFlex="400px" *matHeaderCellDef> Referrer </th>
+        <td mat-cell fxFlex="400px" *matCellDef="let element; let i = index"> {{element[3]}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="agent">
+        <th mat-header-cell fxFlex="400px" *matHeaderCellDef> Agent </th>
+        <td mat-cell fxFlex="400px" *matCellDef="let element; let i = index"> {{element[4]}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </mat-table>
+    
+  </div>  

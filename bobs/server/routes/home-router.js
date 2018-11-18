@@ -38,7 +38,19 @@ router.get('/home/:username', home_controller.user_invoices);
 router.get('/home-invoices/', home_controller.get_all_invoices);
 
 //get all security questions available
-router.get('/security-questions', home_controller.all_questions);
+router.get('/security-questions', home_controller.all_user_questions);
+
+//get all questions
+router.get('/all-questions', home_controller.all_questions);
+
+//add a question
+router.post('/add-questions', home_controller.add_question);
+
+//delete a question
+router.delete('/delete-questions/:id', home_controller.delete_question);
+
+//update a question
+router.put('/update-questions', home_controller.update_question);
 
 // get all services available
 router.get('/repair-services', home_controller.all_services);

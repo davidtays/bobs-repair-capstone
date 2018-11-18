@@ -1,7 +1,5 @@
 
-<p>
-  <a routerLink="/login">Login</a> or <a routerLink="/register">Register</a> to continue 
-</p>
+
 <div *ngIf="invoices | async; let invoices; else loading">
   <mat-card>
     <h2>View Invoices</h2>

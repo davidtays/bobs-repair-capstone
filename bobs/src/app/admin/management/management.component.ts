@@ -24,6 +24,7 @@ export class ManagementComponent implements OnInit, AfterViewInit {
   dataSource: any;
   ngOnInit() {}
   ngAfterViewInit(){}
+  
   constructor(private http: HttpClient, private router: Router) {
     this.users = this.http.get('/api/get-all-users',  {});
     console.log("inside the management constructor");
@@ -39,14 +40,15 @@ export class ManagementComponent implements OnInit, AfterViewInit {
 
   toggleEdits(){
     this.displayIt = true;
-    //this.usersLength = this.users.    
   }
+  
   deleteUser(element){
     console.log(element._id);
     this.http.delete("/api/delete-user/" + element._id)
     .subscribe(res => {
       console.log(res), (err) => {console.log(err)}
     });
+    this.users = this.http.get('/api/get-all-users',  {});
   }
   editUser(element){
     
@@ -55,7 +57,8 @@ export class ManagementComponent implements OnInit, AfterViewInit {
     .subscribe(res => {
       //this.user = res; 
       console.log(res), (err) => {console.log(err)}
-  });
+    });
+  
   }
 
   onSubmit(formData){

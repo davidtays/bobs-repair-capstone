@@ -1,11 +1,43 @@
-<mat-card>
-  <mat-card-content>
-    <mat-toolbar>Change Security Questions</mat-toolbar>
-    <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
-      <mat-checkbox name="checkbox1" [(ngModel)]="checked">Checked</mat-checkbox>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button type='submit' >Cancel</button> <button mat-raised-button type='submit' >Submit</button>
-  </mat-card-actions>
-</mat-card>
+<div *ngIf="questions | async; let questions; else loading">
+  <div *ngIf="!displayIt">
+      <button type="submit" class="btn btn-default" (click)="toggleEdits()">Edit Question</button>
+  </div>  
+  <div *ngIf="displayIt">
+  <div class="example-container mat-elevation-z8"> 
+  <h2>Change Security Questions</h2>
+  <form #f="ngForm"  (ngSubmit)="onSubmit(f.value)">
+
+      <mat-table [dataSource]="questions">
+
+        <ng-container matColumnDef="question">
+          <th mat-header-cell fxFlex="400px"*matHeaderCellDef> Question </th>
+          <td mat-cell fxFlex="400px"*matCellDef="let element; let i = index">
+            <input type="text" fxFlex="400px" matInput placeholder="{{element.question}}" name="q/{{i+1}}" value="element.question" [(ngModel)]="element.question">
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="buttons">
+          <th mat-header-cell fxFlex="300px" *matHeaderCellDef></th>
+          <td mat-cell fxFlex="300px" *matCellDef="let element; let i = index">
+            <span><button type="button" class="btn btn-default" (click)="editQuestion(element)">Edit Question</button>
+              <button type="button" class="btn btn-default" (click)="deleteQuestion(element)">Delete Question</button></span>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </mat-table>
+      <mat-form-field>
+          <input type="text" matInput placeholder="Enter Your Question to Add" name="newQuestion" [(ngModel)]="newQuestion">
+      </mat-form-field>
+      <mat-card-actions>
+        <button type="submit" class="btn btn-default">Add Question</button>
+      </mat-card-actions>
+      
+  </form>
+  </div>
+  </div> 
+</div>
+
+<ng-template #loading>Loading Question Data...</ng-template>
+
+

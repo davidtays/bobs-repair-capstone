@@ -3,12 +3,12 @@
     <button type="submit" class="btn btn-default" (click)="toggleEdits()">Edit User</button>
 </div>
 
-<div   *ngIf="displayIt">
-    <div class="example-container mat-elevation-z8"> 
+<div *ngIf="displayIt">
+  <div class="example-container mat-elevation-z8"> 
   <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
       
     <h2>Edit Users</h2>
-        <mat-card-content>
+        
           <mat-table [dataSource]="users" matSort>
               
             <ng-container matColumnDef="firstName">
@@ -50,13 +50,16 @@
             </ng-container>
         
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           </mat-table>
         
-        </mat-card-content>  
-  </form>
- </div>
-</div>
+        
+      </form>
+      </div>
+ 
+  </div>
+  <a routerLink="/change-questions">Edit Questions Available</a>
+  <p><a routerLink="/logs">Logs Available</a></p>
 </div>
 
 
