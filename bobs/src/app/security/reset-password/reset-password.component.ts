@@ -19,6 +19,8 @@ export class ResetPasswordComponent implements OnInit, AfterViewChecked {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.questions = [this.user['q1'], this.user['q2'], this.user['q3']];
     this.confirmed = false;
+    this.newPassword = '';
+    this.confirmPassword = '';
    }
   ngAfterViewChecked(){
     
